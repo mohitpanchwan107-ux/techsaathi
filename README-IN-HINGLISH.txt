@@ -39,15 +39,15 @@ CATALOGUE STATUS
 
 PHASE 1 / LIVE QA STATUS — UPDATED 19 OCTOBER 2026
 PASS — User manually checked the live homepage, search, category filter, sorting, View details, buying guide and mobile layout.
-PASS — GitHub Actions site checks: internal links/catalogue data, product image and retailer URL coverage, and inline JavaScript syntax.
-PASS — Latest verified GitHub Pages deployment completed successfully for commit 42b87aeb7ac9cd476e3d0042cacbfddea4cf9e92. Any later commit needs its own deployment check.
-PASS — Static source audit checked all 15 HTML files and found no missing local page references.
+PASS — GitHub Actions site checks: internal links/catalogue data, product image and retailer URL coverage, inline JavaScript syntax, SEO metadata and sitemap coverage. Latest run reports 75 product entries, 65 exact-name Amazon search URLs, 10 direct product URLs, and 13 canonical pages included in sitemap.
+PASS — Latest verified GitHub Pages deployment completed successfully for commit d3093e5f227ac19dcd0167f4eae2913ac4ac60fc. Site-check workflow also passed for that same commit. Any later commit needs its own deployment check.
+PASS — Static source audit checked all 16 HTML files and found no missing local page references.
 PASS — Catalogue has 75 product cards across 29 categories; each has an HTTPS image URL, manufacturer URL and retailer URL. Current automated audit reports 10 direct Amazon product URLs and 65 Amazon search-result URLs; the search terms match the corresponding product-card names.
 
 REMAINING LAUNCH TASKS — EXTERNAL / OWNER-ONLY VERIFICATION
 1. Verify the 75 image sources for exact model/variant match and source terms/permissions. User reports images look okay on the live page; visual loading does not establish reuse rights.
 2. Re-open the 10 direct Amazon product URLs to confirm current availability and exact variants. The other 65 are clearly labelled search-result links, not verified exact product listings.
-3. Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
+3. A Google Search Console HTML verification file is now present in the repository, but ownership verification and sitemap submission still require the owner to sign in to Google Search Console and complete the verification/submission steps.
 4. Confirm the teacher's rubric/project instructions. A working website does not automatically satisfy every classroom requirement.
 5. Recheck the latest deployment after any future change. GitHub Actions workflow checks are source-code checks and do not prove every third-party link or image will stay live.
 
