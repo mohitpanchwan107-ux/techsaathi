@@ -194,3 +194,66 @@ jobs:
                       sys.exit(1)
           print("Inline JavaScript syntax checks passed (JSON-LD and external scripts excluded).")
           PY
+
+      - name: Check SEO metadata and sitemap coverage
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+          from html import unescape
+
+          root = Path(".")
+          base = "https://mohitpanchwan107-ux.github.io/techsaathi/"
+          sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
+          sitemap_urls = set(re.findall(r"<loc>(.*?)</loc>", sitemap))
+          errors = []
+          expected_urls = set()
+
+          excluded = {"404.html", "index-1.html", "google5ec20ca5ae33c565.html"}
+          for path in sorted(root.glob("*.html")):
+              if path.name in excluded:
+                  continue
+              source = path.read_text(encoding="utf-8")
+              title = re.search(r"<title[^>]*>(.*?)</title>", source, re.I | re.S)
+              description = re.search(r'<meta\s+name=["\']description["\']\s+content=["\']([^"\']+)["\']', source, re.I)
+              canonical = re.search(r'<link\s+rel=["\']canonical["\']\s+href=["\']([^"\']+)["\']', source, re.I)
+              viewport = re.search(r'<meta\s+name=["\']viewport["\']', source, re.I)
+              og_title = re.search(r'<meta\s+property=["\']og:title["\']', source, re.I)
+              lang = re.search(r'<html[^>]*\blang=["\']([^"\']+)["\']', source, re.I)
+
+              if not title or not title.group(1).strip():
+                  errors.append(f"{path.name}: missing page title")
+              if not description or not description.group(1).strip():
+                  errors.append(f"{path.name}: missing meta description")
+              if not canonical:
+                  errors.append(f"{path.name}: missing canonical URL")
+              else:
+                  url = canonical.group(1).strip()
+                  expected = base if path.name == "index.html" else base + path.name
+                  expected_urls.add(url)
+                  if url != expected:
+                      errors.append(f"{path.name}: canonical URL mismatch (expected {expected})")
+              if not viewport:
+                  errors.append(f"{path.name}: missing mobile viewport metadata")
+              if not og_title:
+                  errors.append(f"{path.name}: missing Open Graph title")
+              if not lang:
+                  errors.append(f"{path.name}: missing HTML language")
+          missing_from_sitemap = expected_urls - sitemap_urls
+          unexpected_in_sitemap = sitemap_urls - expected_urls
+          if missing_from_sitemap:
+              errors.append("Canonical pages missing from sitemap: " + ", ".join(sorted(missing_from_sitemap)))
+          if unexpected_in_sitemap:
+              errors.append("Sitemap includes non-canonical or unknown URLs: " + ", ".join(sorted(unexpected_in_sitemap)))
+
+          verification = root / "google5ec20ca5ae33c565.html"
+          if not verification.is_file():
+              errors.append("Google Search Console verification file is missing")
+
+          if errors:
+              print("SEO/sitemap validation failed:")
+              print("\\n".join("- " + error for error in errors))
+              sys.exit(1)
+          print(f"SEO/sitemap validation passed: {len(expected_urls)} canonical pages, titles, descriptions, canonical URLs, mobile metadata, Open Graph titles, language tags, and sitemap coverage.")
+          PY
