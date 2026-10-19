@@ -3,269 +3,118 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#081321">
-<meta name="description" content="Discover smartphones, laptops, tablets, audio gear and wearables. Explore product details and find retailer listings with Nivoget.">
-<title>Nivoget — Technology. Made Clear.</title>
+<meta name="description" content="Explore electronics and product buying guides with Nivoget.">
+<title>Nivoget | Technology. Made Clear.</title>
 <link rel="icon" href="nivoget-favicon.svg" type="image/svg+xml">
 <style>
-:root {
-  --bg:#081321; --panel:#0d1d30; --panel2:#10243a;
-  --blue:#008bff; --cyan:#00d4ff; --text:#f3f8ff;
-  --muted:#a7b6c9; --line:#22374d; --green:#7ce6bc;
-}
+:root{--bg:#081321;--panel:#102238;--line:#294057;--blue:#008bff;--cyan:#00d4ff;--text:#f4f8ff;--muted:#a9bbcf}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.55}
-button,input,select{font:inherit}
-button,a{ -webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
-button{cursor:pointer}
-.container{width:min(1180px,92%);margin:auto}
-header{position:sticky;top:0;z-index:20;background:rgba(8,19,33,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{font-size:25px;font-weight:850;letter-spacing:-1px}
-.brand span{color:var(--cyan)}
-.navlinks{display:flex;align-items:center;gap:22px;color:var(--muted);font-size:14px}
-.navlinks a:hover{color:white}
-.nav-cta,.primary{border:0;background:linear-gradient(110deg,var(--blue),var(--cyan));color:#001321;font-weight:800;border-radius:12px;padding:11px 16px}
-.hero{padding:66px 0 44px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:34px;align-items:center}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #174e70;background:#0b2439;color:#8fe8ff;border-radius:99px;padding:6px 11px;font-size:12px;font-weight:750}
-.dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 12px var(--cyan)}
-h1{font-size:clamp(39px,6vw,68px);line-height:1.04;letter-spacing:-2.5px;margin:20px 0}
-.gradient{background:linear-gradient(90deg,#fff,#69dfff 70%);color:transparent;background-clip:text}
-.hero p{color:var(--muted);max-width:600px;font-size:17px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.secondary{border:1px solid #36506a;background:#0c1b2d;color:white;padding:11px 16px;border-radius:12px;font-weight:700}
-.hero-art{min-height:300px;position:relative;display:grid;place-items:center;border:1px solid #1b3c58;border-radius:28px;background:radial-gradient(ellipse at 50% 40%,#123b5a 0, #0b1b2d 48%,#091524 75%)}
-.orbit{position:absolute;width:235px;height:235px;border:1px solid #23618b;border-radius:50%;box-shadow:0 0 45px #008bff18}
-.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #1e567b;border-radius:50%;inset:24px}
-.orbit:after{inset:52px}
-.hero-device{width:116px;height:205px;border:4px solid #8edfff;border-radius:25px;background:linear-gradient(150deg,#1c76b2,#091321 65%);box-shadow:0 0 55px #008bff55;z-index:1;transform:rotate(-9deg);position:relative}
-.hero-device:before{content:"";position:absolute;top:8px;left:37%;width:26%;height:7px;border-radius:9px;background:#091321}
-.hero-device:after{content:"N";position:absolute;inset:45px 0 0;display:grid;place-items:center;font-size:72px;font-weight:900;color:#8eeaff;text-shadow:0 0 28px #00d4ff}
-.floating{position:absolute;z-index:2;background:#102940;border:1px solid #2a526f;border-radius:13px;padding:10px 13px;font-size:12px;color:#d7f5ff}
-.float-one{top:28px;left:18px}.float-two{right:15px;bottom:28px}
-.section{padding:32px 0 55px}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
-.section-head h2{margin:0;font-size:clamp(25px,4vw,34px);letter-spacing:-1px}
-.section-head p{margin:6px 0 0;color:var(--muted);font-size:14px}
-.category-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.category{border:1px solid var(--line);background:var(--panel);color:white;border-radius:16px;padding:18px 10px;text-align:center;transition:.2s}
-.category:hover,.category.active{border-color:var(--blue);background:#102c46;transform:translateY(-2px)}
-.category-icon{font-size:27px;display:block;margin-bottom:6px}
-.category small{display:block;color:var(--muted);font-size:12px}
-.toolbar{display:grid;grid-template-columns:minmax(180px,1fr) 190px 190px;gap:10px;margin:24px 0 17px}
-.searchbox,.selectbox{width:100%;border:1px solid var(--line);background:#0d1d30;color:white;border-radius:12px;padding:12px 14px;outline:none}
-.searchbox:focus,.selectbox:focus{border-color:var(--cyan)}
-.searchbox::placeholder{color:#8296ac}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
-.chip{border:1px solid var(--line);background:#0d1d30;color:#b9c8d9;border-radius:99px;padding:7px 13px;font-size:12px}
-.chip.active{background:#123653;color:#fff;border-color:#168be0}
-.results-line{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:13px;margin:0 0 14px}
-.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
-.product-card{border:1px solid var(--line);background:linear-gradient(160deg,#10243a,#0b192a 78%);border-radius:19px;overflow:hidden;transition:transform .2s,border-color .2s}
-.product-card:hover{transform:translateY(-3px);border-color:#326488}
-.product-art{height:190px;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,#17405b 0,#10263c 43%,#0c1b2d 78%)}
-.product-art:before{content:"";position:absolute;width:170px;height:170px;border:1px solid #235274;border-radius:50%;opacity:.7}
-.product-art:after{content:"";position:absolute;width:120px;height:120px;border:1px solid #204965;border-radius:50%;opacity:.8}
-.art-label{position:absolute;top:12px;left:12px;z-index:3;background:#0b1b2cdd;border:1px solid #2b4d67;border-radius:8px;padding:5px 8px;font-size:10px;color:#b8eaff;font-weight:800}
-.device{position:relative;z-index:2;filter:drop-shadow(0 12px 17px #0008)}
-.device.phone{height:126px;width:66px;border:3px solid #b3c5d5;border-radius:15px;background:linear-gradient(140deg,#2784b9,#101b35 60%,#00a7d5);transform:rotate(-7deg)}
-.device.phone:before{content:"";position:absolute;top:5px;left:34%;width:32%;height:5px;border-radius:5px;background:#071321}
-.device.phone:after{content:"";position:absolute;top:23px;left:8px;width:13px;height:13px;border:2px solid #9ceeff;border-radius:50%;box-shadow:0 18px 0 -2px #0c1c2e,0 18px 0 0 #9ceeff}
-.device.laptop{width:148px;height:91px;border:4px solid #b5c6d5;border-radius:8px;background:linear-gradient(140deg,#176b9a,#091321);transform:perspective(220px) rotateX(-4deg)}
-.device.laptop:after{content:"";position:absolute;bottom:-12px;left:-12px;width:164px;height:8px;border-radius:2px 2px 9px 9px;background:#95aabd}
-.device.tablet{width:106px;height:130px;border:4px solid #b4c6d8;border-radius:12px;background:linear-gradient(140deg,#12699c,#081321 75%);transform:rotate(5deg)}
-.device.tablet:after{content:"";position:absolute;left:47%;bottom:3px;width:6px;height:3px;border-radius:50%;background:#9fb9ce}
-.device.watch{width:65px;height:73px;border:5px solid #a7c2d6;border-radius:19px;background:linear-gradient(135deg,#1d7ab0,#081321);box-shadow:0 -29px 0 -12px #7196ad,0 29px 0 -12px #7196ad}
-.device.watch:after{content:"";position:absolute;inset:19px 8px auto;height:20px;border-top:2px solid #70e7ff;border-bottom:2px solid #70e7ff}
-.device.audio{width:100px;height:66px}
-.device.audio:before,.device.audio:after{content:"";position:absolute;width:31px;height:48px;border:5px solid #a9c9da;background:linear-gradient(135deg,#1e779e,#091321);border-radius:18px 18px 23px 23px;top:7px}
-.device.audio:before{left:12px;transform:rotate(-10deg)}
-.device.audio:after{right:12px;transform:rotate(10deg)}
-.card-body{padding:16px}
-.card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.status{font-size:10px;font-weight:800;letter-spacing:.4px;color:#9fe9ff;background:#10314a;border-radius:6px;padding:4px 7px}
-.status.upcoming{color:#ffd58c;background:#3b2b17}
-.status.popular{color:#9be9c4;background:#10352d}
-.product-card h3{font-size:17px;margin:12px 0 4px;letter-spacing:-.3px}
-.brandline{font-size:12px;color:#91a7bd}
-.product-summary{font-size:13px;color:#b7c6d7;min-height:41px;margin:10px 0}
-.specs{display:flex;flex-wrap:wrap;gap:6px;margin:11px 0 15px}
-.spec{font-size:10px;color:#cfdeed;border:1px solid #294057;border-radius:7px;padding:4px 7px}
-.price{font-size:17px;font-weight:850}
-.price-note{font-size:11px;color:#91a7bd;font-weight:500}
-.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-.card-actions button,.card-actions a{display:flex;justify-content:center;align-items:center;text-align:center;border-radius:10px;padding:10px 8px;font-size:12px;font-weight:800}
-.details-btn{background:#153652;border:1px solid #285575;color:white}
-.retail-btn{background:linear-gradient(100deg,var(--blue),var(--cyan));color:#041422;border:0}
-.empty{grid-column:1/-1;text-align:center;padding:50px 15px;border:1px dashed #31506a;border-radius:16px;color:var(--muted)}
-.note{font-size:12px;color:#8fa4ba}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.info-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:20px}
-.info-card .big{font-size:23px}
-.info-card h3{margin:9px 0 5px;font-size:16px}
-.info-card p{margin:0;color:var(--muted);font-size:13px}
-footer{border-top:1px solid var(--line);padding:28px 0 35px;color:var(--muted);font-size:13px}
-.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.footer-links{display:flex;gap:15px;flex-wrap:wrap}
-.footer-links a:hover{color:white}
-dialog{width:min(720px,92vw);max-height:88vh;overflow:auto;background:#0b1b2c;color:var(--text);border:1px solid #2a4b66;border-radius:22px;padding:0;box-shadow:0 25px 100px #000a}
-dialog::backdrop{background:#020914cc;backdrop-filter:blur(5px)}
-.modal-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#0b1b2c;z-index:2}
-.modal-head strong{font-size:14px;color:#b7d8ef}
-.close-btn{border:1px solid #35536b;background:#14283c;color:white;border-radius:9px;width:36px;height:36px;font-size:21px}
-.modal-content{padding:22px}
-.modal-content h2{font-size:29px;line-height:1.15;letter-spacing:-1px;margin:12px 0 8px}
-.modal-content p{color:#b7c6d7}
-.modal-art{height:180px;border-radius:15px;display:grid;place-items:center;background:radial-gradient(ellipse,#164b6b,#0b1b2c 75%);margin-bottom:18px}
-.detail-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
-.detail-item{padding:12px;background:#10243a;border:1px solid #223c53;border-radius:10px}
-.detail-item small{display:block;color:#8fa7bf;font-size:11px}
-.detail-item strong{font-size:13px}
-.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.modal-actions a,.modal-actions button{border-radius:10px;padding:11px 14px;font-weight:800;font-size:13px}
-@media(max-width:800px){
- .hero-grid{grid-template-columns:1fr}.hero-art{min-height:255px}
- .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .category-grid{grid-template-columns:repeat(3,1fr)}
- .info-grid{grid-template-columns:1fr}
- .toolbar{grid-template-columns:1fr 1fr}.searchbox{grid-column:1/-1}
- .navlinks{gap:12px}.navlinks a:nth-child(2){display:none}
-}
-@media(max-width:520px){
- .container{width:92%}.nav{min-height:62px}.brand{font-size:22px}
- .navlinks a{display:none}.nav-cta{padding:9px 11px;font-size:12px}
- .hero{padding-top:42px}.hero p{font-size:15px}
- .product-grid{grid-template-columns:1fr 1fr;gap:10px}
- .product-art{height:150px}.product-card h3{font-size:14px}
- .card-body{padding:11px}.product-summary{font-size:12px;min-height:55px}
- .card-actions{grid-template-columns:1fr}.card-actions button,.card-actions a{padding:9px 6px}
- .price{font-size:15px}.category-grid{gap:8px}
- .category{padding:13px 5px;font-size:12px}
- .toolbar{grid-template-columns:1fr}.searchbox{grid-column:auto}
- .section-head{align-items:start;flex-direction:column}
- .detail-list{grid-template-columns:1fr 1fr}
-}
+button,input,select{font:inherit}
+button,a{cursor:pointer}
+.wrap{width:min(1120px,92%);margin:auto}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#081321f5;z-index:5}
+nav{min-height:68px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--cyan)}
+.navlinks{display:flex;gap:18px;color:var(--muted);font-size:14px}
+.hero{padding:58px 0 38px}
+.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:1.5px}
+h1{font-size:clamp(38px,6vw,66px);line-height:1.06;letter-spacing:-2px;margin:12px 0}
+.gradient{color:var(--cyan)}
+p{color:var(--muted)}
+.hero p{max-width:620px}
+.btn{display:inline-block;padding:11px 15px;border-radius:10px;font-weight:800;font-size:13px;border:1px solid var(--line)}
+.primary{background:linear-gradient(100deg,var(--blue),var(--cyan));color:#031423;border:0}
+section{padding:24px 0 42px}
+h2{font-size:28px;letter-spacing:-.7px;margin:0}
+.sub{margin:5px 0 20px;font-size:14px}
+.toolbar{display:grid;grid-template-columns:1fr 200px;gap:10px;margin:20px 0}
+input,select{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;color:white}
+input::placeholder{color:#9aadc2}
+.categories{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.chip{background:var(--panel);border:1px solid var(--line);color:white;border-radius:99px;padding:8px 13px;font-size:12px}
+.chip.active{border-color:var(--cyan);background:#123451}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.card{border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#10243a,#0b1928);overflow:hidden}
+.photo{height:225px;background:#f6f7f9;display:flex;align-items:center;justify-content:center;padding:12px}
+.photo img{display:block;width:100%;height:100%;object-fit:contain}
+.body{padding:16px}
+.status{font-size:10px;font-weight:800;letter-spacing:.6px;color:#9beeff;background:#12324a;padding:5px 8px;border-radius:6px}
+.brand{color:var(--muted);font-size:12px;margin-left:8px}
+h3{font-size:19px;margin:14px 0 6px}
+.specs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.spec{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:5px 7px;color:#d4e1ee}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.actions button,.actions a{display:flex;justify-content:center;align-items:center;text-align:center;padding:10px 6px;border-radius:9px;font-size:12px;font-weight:800}
+.details{background:#153652;color:white;border:1px solid #31516b}
+.retail{background:linear-gradient(100deg,var(--blue),var(--cyan));color:#041422}
+.note{font-size:12px}
+.empty{grid-column:1/-1;padding:35px;text-align:center;border:1px dashed var(--line);border-radius:15px}
+footer{border-top:1px solid var(--line);padding:28px 0}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{font-size:13px;color:var(--muted);margin-right:12px}
+dialog{width:min(680px,92vw);max-height:88vh;overflow:auto;background:#0b1b2c;color:white;border:1px solid #31506a;border-radius:18px;padding:0}
+dialog::backdrop{background:#000b}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+.close{background:#172c40;border:1px solid var(--line);color:white;border-radius:8px;padding:5px 12px;font-size:20px}
+.modal-body{padding:20px}
+.modal-body h2{margin:15px 0}
+.modal-photo{height:240px;background:#f6f7f9;border-radius:12px;padding:10px;display:flex;justify-content:center}
+.modal-photo img{max-width:100%;max-height:100%;object-fit:contain}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo{height:175px}.navlinks{gap:10px;font-size:12px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:9px}.body{padding:11px}.photo{height:145px}h3{font-size:15px}.actions{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.hero{padding-top:40px}.navlinks a:nth-child(2){display:none}}
 </style>
 </head>
 <body>
 <header>
-  <div class="container nav">
-    <a class="brand" href="#" aria-label="Nivoget home">Nivo<span>get</span></a>
-    <nav class="navlinks" aria-label="Main navigation">
-      <a href="#products">Explore products</a>
-      <a href="#latest">Latest updates</a>
-      <a href="editorial-policy.html">Our policy</a>
-    </nav>
-    <a class="nav-cta" href="#products">Explore tech ↗</a>
-  </div>
+  <nav class="wrap">
+    <a class="logo" href="index.html">Nivo<span>get</span></a>
+    <div class="navlinks">
+      <a href="#products">Products</a>
+      <a href="smartphone-buying-guide.html">Buying guides</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
 </header>
 
 <main>
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow"><span class="dot"></span> YOUR TECH DISCOVERY HUB</span>
-      <h1>Technology.<br><span class="gradient">Made Clear.</span></h1>
-      <p>Explore gadgets, understand what matters, compare key features, and find retailer listings — without the tech jargon.</p>
-      <div class="hero-actions">
-        <a class="primary" href="#products">Explore products →</a>
-        <a class="secondary" href="#latest">What's new?</a>
-      </div>
-      <p class="note">Product information is for discovery, not a substitute for checking the manufacturer's final specifications.</p>
-    </div>
-    <div class="hero-art" aria-label="Nivoget technology illustration">
-      <div class="orbit"></div><div class="hero-device"></div>
-      <div class="floating float-one">✦ Tech, simplified</div>
-      <div class="floating float-two">Explore · Understand · Choose</div>
-    </div>
-  </div>
-</section>
+  <section class="hero wrap">
+    <div class="eyebrow">TECHNOLOGY · MADE CLEAR</div>
+    <h1>Find your next<br><span class="gradient">tech upgrade.</span></h1>
+    <p>Explore electronics, understand important specifications, and visit official product pages before making a buying decision.</p>
+    <a class="btn primary" href="#products">Explore products ↓</a>
+  </section>
 
-<section class="section" aria-labelledby="categories-title">
-  <div class="container">
-    <div class="section-head">
-      <div><h2 id="categories-title">Explore by category</h2><p>Find the kind of tech you're looking for.</p></div>
-    </div>
-    <div class="category-grid" id="categoryGrid">
-      <button class="category active" data-category="All"><span class="category-icon">▦</span>All products<small>Full catalogue</small></button>
-      <button class="category" data-category="Phones"><span class="category-icon">▯</span>Smartphones<small>Android & more</small></button>
-      <button class="category" data-category="Laptops"><span class="category-icon">▱</span>Laptops<small>Work & gaming</small></button>
-      <button class="category" data-category="Tablets"><span class="category-icon">▤</span>Tablets<small>Study & entertainment</small></button>
-      <button class="category" data-category="Audio"><span class="category-icon">♫</span>Audio<small>Earbuds & sound</small></button>
-      <button class="category" data-category="Wearables"><span class="category-icon">◷</span>Wearables<small>Watches & bands</small></button>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="products">
-  <div class="container">
-    <div class="section-head">
-      <div><h2>Discover products</h2><p>Browse products and open their Nivoget detail pages.</p></div>
-    </div>
+  <section class="wrap" id="products">
+    <h2>Product explorer</h2>
+    <p class="sub">Real product photos · Product details · Official pages</p>
     <div class="toolbar">
-      <input class="searchbox" id="searchInput" type="search" placeholder="Search product or brand…" aria-label="Search products">
-      <select class="selectbox" id="categorySelect" aria-label="Filter category">
+      <input id="search" type="search" placeholder="Search phones, laptops, tablets…" aria-label="Search products">
+      <select id="category" aria-label="Filter category">
         <option value="All">All categories</option>
         <option value="Phones">Smartphones</option>
         <option value="Laptops">Laptops</option>
         <option value="Tablets">Tablets</option>
-        <option value="Audio">Audio</option>
-        <option value="Wearables">Wearables</option>
-      </select>
-      <select class="selectbox" id="sortSelect" aria-label="Sort products">
-        <option value="featured">Sort: Featured</option>
-        <option value="name">Name: A–Z</option>
-        <option value="low">Price: Low to high*</option>
-        <option value="high">Price: High to low*</option>
-        <option value="newest">Latest first</option>
       </select>
     </div>
-    <div class="chips" aria-label="Product status filters">
-      <button class="chip active" data-status="All">All status</button>
+    <div class="categories">
+      <button class="chip active" data-status="All">All products</button>
       <button class="chip" data-status="New Launch">New launches</button>
-      <button class="chip" data-status="Upcoming">Upcoming</button>
-      <button class="chip" data-status="Popular">Popular picks</button>
+      <button class="chip" data-status="Popular">Popular categories</button>
     </div>
-    <div class="results-line"><span id="resultCount" aria-live="polite">Loading products…</span><span>*Only products with a numeric price are price-sorted.</span></div>
-    <div class="product-grid" id="productGrid"></div>
-    <p class="note" style="margin-top:18px">Images on this page are illustrative device graphics, not official product photographs. Prices and availability can change; verify them on the retailer's page.</p>
-  </div>
-</section>
-
-<section class="section" id="latest">
-  <div class="container">
-    <div class="section-head">
-      <div><h2>Stay informed</h2><p>New products and updates should be verified before being labelled as launched.</p></div>
-    </div>
-    <div class="info-grid">
-      <article class="info-card">
-        <div class="big">✦</div><h3>Latest launches</h3>
-        <p>We identify new products separately from established products, so recent launches are easier to find.</p>
-        <p style="margin-top:12px"><a href="https://www.smartprix.com/bytes/upcoming-phone-launches-in-india-in-october-2026-redmi-oppo-vivo-oneplus-more/" target="_blank" rel="noopener noreferrer">Read phone launch coverage ↗</a></p>
-      </article>
-      <article class="info-card">
-        <div class="big">⌁</div><h3>Check before buying</h3>
-        <p>Confirm the exact configuration, warranty, seller, return policy and final price before purchasing.</p>
-        <p style="margin-top:12px"><a href="https://www.dell.com/en-in" target="_blank" rel="noopener noreferrer">Dell India official website ↗</a></p>
-      </article>
-      <article class="info-card">
-        <div class="big">◎</div><h3>Clear product status</h3>
-        <p>Upcoming products are not treated as available for purchase. Rumours are not confirmed specifications.</p>
-        <p style="margin-top:12px"><a href="editorial-policy.html">Read our editorial policy ↗</a></p>
-      </article>
-    </div>
-  </div>
-</section>
+    <p id="count" class="note" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+    <p class="note">Prices and availability may change. The retailer button is a search, not a guaranteed exact product listing. Use the official product page to confirm the exact model.</p>
+  </section>
 </main>
 
 <footer>
-  <div class="container footer-row">
-    <div><a class="brand" href="#">Nivo<span>get</span></a><p>Technology. Made Clear.</p><p>© <span id="year"></span> Nivoget. Product information may change.</p></div>
-    <div class="footer-links">
+  <div class="wrap foot">
+    <div><a class="logo" href="index.html">Nivo<span>get</span></a><p>Technology. Made Clear.</p></div>
+    <div>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="privacy.html">Privacy</a>
@@ -275,449 +124,126 @@ dialog::backdrop{background:#020914cc;backdrop-filter:blur(5px)}
   </div>
 </footer>
 
-<dialog id="productDialog" aria-labelledby="dialogTitle">
-  <div class="modal-head"><strong>NIVOGET · PRODUCT DETAILS</strong><button class="close-btn" id="closeDialog" aria-label="Close details">×</button></div>
-  <div class="modal-content" id="modalContent"></div>
+<dialog id="dialog">
+  <div class="modal-head"><strong>NIVOGET · PRODUCT DETAILS</strong><button class="close" id="close" aria-label="Close">×</button></div>
+  <div class="modal-body" id="modalBody"></div>
 </dialog>
 
 <script>
-"use strict";
-
-/*
-  Nivoget catalogue.
-  Prices are numeric only when a specific starting price has a source.
-  Retailer links open a retailer search; product cards themselves open Nivoget details.
-  Illustrations are generic CSS drawings and are not claimed to be official photos.
-*/
 const products = [
-  {
-    id:"redmi-17c",name:"Redmi 17C 5G",brand:"Xiaomi / Redmi",category:"Phones",
-    status:"New Launch",date:20261001,price:20999,priceLabel:"From ₹20,999",
-    description:"A budget-oriented 5G smartphone launched in India in October 2026.",
-    specs:["5G","6,000mAh battery","120Hz display"],
-    highlights:[
-      ["Display","6.9-inch HD+ LCD, adaptive 120Hz"],
-      ["Processor","MediaTek Dimensity 6300"],
-      ["Rear camera","50MP"],
-      ["Front camera","8MP"],
-      ["Battery","6,000mAh; 33W charging"],
-      ["Software","Android 16 / HyperOS 3 (reported)"]
-    ],
-    note:"Starting price and specifications are based on launch coverage; check the exact variant before buying.",
-    retailer:"https://www.amazon.in/s?k=Redmi+17C+5G",
-    official:"https://www.mi.com/in/"
-  },
-  {
-    id:"dell-xps-13-2026",name:"Dell XPS 13 (2026)",brand:"Dell",category:"Laptops",
-    status:"New Launch",date:20261012,price:null,priceLabel:"Check current price",
-    description:"A premium compact laptop announced for the Indian market with Intel Core Ultra Series 3 options.",
-    specs:["13.4-inch display","Up to 32GB RAM","Up to 1TB SSD"],
-    highlights:[
-      ["Processor","Intel Core Ultra 7 Series 3 options"],
-      ["Display","13.4-inch 2.5K touchscreen"],
-      ["Memory","Configurations up to 32GB RAM"],
-      ["Storage","Configurations up to 1TB SSD"],
-      ["Weight","Approximately 1kg, configuration dependent"]
-    ],
-    note:"Reported available in India in October 2026. Exact configuration and price must be checked with Dell.",
-    retailer:"https://www.amazon.in/s?k=Dell+XPS+13+2026",
-    official:"https://www.dell.com/en-in"
-  },
-  {
-    id:"acer-iconia-11",name:"Acer Iconia Tab 11 5G",brand:"Acer",category:"Tablets",
-    status:"New Launch",date:20261012,price:null,priceLabel:"Check current price",
-    description:"An Android tablet introduced in India with 5G connectivity.",
-    specs:["5G connectivity","90Hz display","Tablet"],
-    highlights:[
-      ["Category","Android tablet"],
-      ["Connectivity","5G variant"],
-      ["Display","90Hz display, according to launch coverage"]
-    ],
-    note:"Check Acer's current listing for full specifications, memory variants and price.",
-    retailer:"https://www.amazon.in/s?k=Acer+Iconia+Tab+11+5G",
-    official:"https://www.acer.com/in-en"
-  },
-  {
-    id:"acer-iconia-12",name:"Acer Iconia Tab 12 5G",brand:"Acer",category:"Tablets",
-    status:"New Launch",date:20261012,price:null,priceLabel:"Check current price",
-    description:"A larger-format tablet in Acer's Iconia range, reported launched in India.",
-    specs:["5G connectivity","90Hz display","Large-screen tablet"],
-    highlights:[
-      ["Category","Android tablet"],
-      ["Connectivity","5G variant"],
-      ["Display","90Hz display, according to launch coverage"]
-    ],
-    note:"Confirm the exact screen size, storage variant and retail availability with Acer before buying.",
-    retailer:"https://www.amazon.in/s?k=Acer+Iconia+Tab+12+5G",
-    official:"https://www.acer.com/in-en"
-  },
-  {
-    id:"oppo-find-x10",name:"OPPO Find X10 series",brand:"OPPO",category:"Phones",
-    status:"Upcoming",date:20261022,price:null,priceLabel:"India price not confirmed",
-    description:"A forthcoming India launch reported for October 2026. Treat regional availability and specifications as subject to confirmation.",
-    specs:["Premium series","Launch status: upcoming","Price unconfirmed"],
-    highlights:[
-      ["Status","India launch reported for 22 October 2026"],
-      ["Availability","Check OPPO India for official confirmation"],
-      ["Price","Not confirmed here"]
-    ],
-    note:"This item is marked upcoming as of 19 October 2026. The status should be updated after official launch confirmation.",
-    retailer:"https://www.amazon.in/s?k=OPPO+Find+X10",
-    official:"https://www.oppo.com/in/"
-  },
-  {
-    id:"oneplus-15",name:"OnePlus 15",brand:"OnePlus",category:"Phones",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"A performance-focused OnePlus phone. Check the India variant and official availability before buying.",
-    specs:["Performance-focused","Android","Variant matters"],
-    highlights:[
-      ["Category","Android smartphone"],
-      ["Buying tip","Check the precise model name, region and warranty"],
-      ["Price","Varies by configuration and retailer"]
-    ],
-    note:"Verify current India specifications on the official product page.",
-    retailer:"https://www.amazon.in/s?k=OnePlus+15",
-    official:"https://www.oneplus.in/"
-  },
-  {
-    id:"xiaomi-17-ultra",name:"Xiaomi 17 Ultra",brand:"Xiaomi",category:"Phones",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"A premium smartphone in Xiaomi's flagship range.",
-    specs:["Flagship range","Camera-focused","Android"],
-    highlights:[
-      ["Category","Premium Android smartphone"],
-      ["Focus","Flagship performance and camera features"],
-      ["Buying tip","Confirm regional variant and warranty"]
-    ],
-    note:"Check the current official India listing for availability and specifications.",
-    retailer:"https://www.amazon.in/s?k=Xiaomi+17+Ultra",
-    official:"https://www.mi.com/in/"
-  },
-  {
-    id:"asus-zenbook-14",name:"ASUS Zenbook 14",brand:"ASUS",category:"Laptops",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"A portable laptop family for study, work and everyday productivity.",
-    specs:["Portable design","OLED options by model","Windows"],
-    highlights:[
-      ["Category","Thin-and-light laptop family"],
-      ["Configurations","Specifications differ by model and year"],
-      ["Buying tip","Check CPU, RAM, display and battery on the exact listing"]
-    ],
-    note:"Zenbook 14 includes multiple configurations; this card does not represent one specific SKU.",
-    retailer:"https://www.amazon.in/s?k=ASUS+Zenbook+14",
-    official:"https://www.asus.com/in/"
-  },
-  {
-    id:"lenovo-loq",name:"Lenovo LOQ gaming laptops",brand:"Lenovo",category:"Laptops",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"A gaming-laptop family with different CPU and GPU configurations.",
-    specs:["Gaming laptops","Dedicated GPU on selected models","Multiple configurations"],
-    highlights:[
-      ["Category","Gaming laptop family"],
-      ["Graphics","GPU depends on exact model"],
-      ["Buying tip","Check GPU, RAM, screen and warranty before choosing"]
-    ],
-    note:"This is a product family, not a single configuration or guaranteed price.",
-    retailer:"https://www.amazon.in/s?k=Lenovo+LOQ+gaming+laptop",
-    official:"https://www.lenovo.com/in/en/"
-  },
-  {
-    id:"samsung-galaxy-buds-core",name:"Galaxy Buds Core",brand:"Samsung",category:"Audio",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"Wireless earbuds for everyday listening and calls.",
-    specs:["True wireless","Compact charging case","Samsung ecosystem"],
-    highlights:[
-      ["Category","True wireless earbuds"],
-      ["Compatibility","Check compatibility and supported features for your device"],
-      ["Buying tip","Compare fit, battery and noise-control features"]
-    ],
-    note:"Confirm the current model, features and price on Samsung's official listing.",
-    retailer:"https://www.amazon.in/s?k=Samsung+Galaxy+Buds+Core",
-    official:"https://www.samsung.com/in/"
-  },
-  {
-    id:"oneplus-watch-2",name:"OnePlus Watch 2",brand:"OnePlus",category:"Wearables",
-    status:"Popular",date:20240000,price:null,priceLabel:"Check current price",
-    description:"A Wear OS smartwatch with fitness and smart-notification features.",
-    specs:["Wear OS","Fitness tracking","Smart notifications"],
-    highlights:[
-      ["Category","Smartwatch"],
-      ["Software","Wear OS generation and update support should be verified"],
-      ["Buying tip","Check phone compatibility and battery expectations"]
-    ],
-    note:"Prices and software support can vary; check OnePlus's current listing.",
-    retailer:"https://www.amazon.in/s?k=OnePlus+Watch+2",
-    official:"https://www.oneplus.in/"
-  },
-  {
-    id:"redmi-watch-move",name:"Redmi Watch Move",brand:"Redmi",category:"Wearables",
-    status:"Popular",date:20250000,price:null,priceLabel:"Check current price",
-    description:"A smartwatch option for everyday notifications and activity tracking.",
-    specs:["Smartwatch","Activity tracking","Phone notifications"],
-    highlights:[
-      ["Category","Smartwatch"],
-      ["Features","Verify sensors and calling features on the exact listing"],
-      ["Buying tip","Check phone compatibility and warranty"]
-    ],
-    note:"Confirm current features and price from the seller or manufacturer.",
-    retailer:"https://www.amazon.in/s?k=Redmi+Watch+Move",
-    official:"https://www.mi.com/in/"
-  },
-  {
-    id:"boat-storm-call-4",name:"boAt Storm Call 4",brand:"boAt",category:"Wearables",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"A smartwatch model from boAt's everyday wearable range.",
-    specs:["Smartwatch","Type-C charging reported","Everyday features"],
-    highlights:[
-      ["Category","Smartwatch"],
-      ["Charging","Check charging specification on the current model listing"],
-      ["Buying tip","Confirm return policy and warranty"]
-    ],
-    note:"Check the current official listing for the exact variant and feature set.",
-    retailer:"https://www.amazon.in/s?k=boAt+Storm+Call+4",
-    official:"https://www.boat-lifestyle.com/"
-  },
-  {
-    id:"noise-colorfit-pulse-2-max",name:"Noise ColorFit Pulse 2 Max",brand:"Noise",category:"Wearables",
-    status:"Popular",date:20250000,price:null,priceLabel:"Check current price",
-    description:"A budget-oriented smartwatch model for notifications and everyday activity tracking.",
-    specs:["Smartwatch","Activity tracking","Multiple watch faces"],
-    highlights:[
-      ["Category","Smartwatch"],
-      ["Features","Confirm calling and sensor support on the exact listing"],
-      ["Buying tip","Compare display, battery and warranty"]
-    ],
-    note:"Features can differ between product variants; check the retailer's current listing.",
-    retailer:"https://www.amazon.in/s?k=Noise+ColorFit+Pulse+2+Max",
-    official:"https://www.gonoise.com/"
-  },
-  {
-    id:"boat-nirvana-space",name:"boAt Nirvana Space",brand:"boAt",category:"Audio",
-    status:"Popular",date:20250000,price:null,priceLabel:"Check current price",
-    description:"Wireless earbuds for portable everyday listening.",
-    specs:["True wireless","Portable case","Bluetooth audio"],
-    highlights:[
-      ["Category","Wireless earbuds"],
-      ["Compatibility","Bluetooth devices"],
-      ["Buying tip","Check battery life, fit and microphone performance"]
-    ],
-    note:"Verify exact features and availability with the manufacturer.",
-    retailer:"https://www.amazon.in/s?k=boAt+Nirvana+Space",
-    official:"https://www.boat-lifestyle.com/"
-  },
-  {
-    id:"samsung-galaxy-s-series",name:"Samsung Galaxy S series",brand:"Samsung",category:"Phones",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"Samsung's premium smartphone family, with different models and storage options.",
-    specs:["Premium Android","Multiple models","Camera options vary"],
-    highlights:[
-      ["Category","Premium smartphone family"],
-      ["Specifications","Vary by model and generation"],
-      ["Buying tip","Compare the exact generation, storage and warranty"]
-    ],
-    note:"This is a family listing. Choose a specific model before comparing specifications.",
-    retailer:"https://www.amazon.in/s?k=Samsung+Galaxy+S+series",
-    official:"https://www.samsung.com/in/"
-  },
-  {
-    id:"iphone-family",name:"Apple iPhone range",brand:"Apple",category:"Phones",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"Explore Apple's smartphone range and compare available generations.",
-    specs:["iOS","Multiple generations","Storage options vary"],
-    highlights:[
-      ["Category","Smartphone family"],
-      ["Specifications","Vary by generation and model"],
-      ["Buying tip","Check storage, warranty and seller carefully"]
-    ],
-    note:"This is a family listing, not a specific iPhone model.",
-    retailer:"https://www.amazon.in/s?k=Apple+iPhone",
-    official:"https://www.apple.com/in/iphone/"
-  },
-  {
-    id:"ipad-family",name:"Apple iPad range",brand:"Apple",category:"Tablets",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"Explore tablets for study, drawing, entertainment and productivity.",
-    specs:["iPadOS","Multiple models","Accessory support varies"],
-    highlights:[
-      ["Category","Tablet family"],
-      ["Compatibility","Apple Pencil and keyboard support varies by model"],
-      ["Buying tip","Check the exact model and accessory compatibility"]
-    ],
-    note:"This is a family listing. Compare a specific model before purchase.",
-    retailer:"https://www.amazon.in/s?k=Apple+iPad",
-    official:"https://www.apple.com/in/ipad/"
-  },
-  {
-    id:"sony-headphones",name:"Sony wireless headphones",brand:"Sony",category:"Audio",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"Explore Sony's wireless headphone range for travel, study and everyday listening.",
-    specs:["Wireless audio","Model-dependent ANC","Over-ear options"],
-    highlights:[
-      ["Category","Wireless headphone family"],
-      ["Features","Noise cancellation and codecs vary by model"],
-      ["Buying tip","Check comfort, battery and device compatibility"]
-    ],
-    note:"This is a family listing. Product-specific details depend on the model.",
-    retailer:"https://www.amazon.in/s?k=Sony+wireless+headphones",
-    official:"https://www.sony.co.in/"
-  },
-  {
-    id:"logitech-mouse",name:"Logitech wireless mice",brand:"Logitech",category:"Audio",
-    status:"Popular",date:20260000,price:null,priceLabel:"Check current price",
-    description:"Wireless mouse options for laptops, desktops and everyday productivity.",
-    specs:["Wireless options","Productivity","Models vary"],
-    highlights:[
-      ["Category","Computer accessories"],
-      ["Connectivity","Depends on model: Bluetooth or USB receiver"],
-      ["Buying tip","Check device compatibility and connection type"]
-    ],
-    note:"This is a family listing; check the exact model and connectivity before ordering.",
-    retailer:"https://www.amazon.in/s?k=Logitech+wireless+mouse",
-    official:"https://www.logitech.com/en-in"
-  }
+ {
+  id:"redmi17c",name:"Redmi 17C 5G",brand:"Xiaomi / Redmi",category:"Phones",status:"New Launch",
+  image:"https://i02.appmifile.com/mi-com-product/fly-birds/redmi-17c-5g-in/pc/bg-screen01.png",
+  description:"A 5G smartphone with a 6.9-inch display and a 6,000mAh battery.",
+  specs:["Dimensity 6300","50MP camera","6,000mAh"],
+  details:[
+   ["Display","6.9-inch HD+ LCD, up to 120Hz"],
+   ["Processor","MediaTek Dimensity 6300"],
+   ["Rear camera","50MP main camera"],
+   ["Front camera","8MP"],
+   ["Battery","6,000mAh; 33W charging"]
+  ],
+  official:"https://www.mi.com/in/product/redmi-17c-5g/",
+  retailer:"https://www.amazon.in/s?k=Redmi+17C+5G",
+  price:"Official store price varies by variant"
+ },
+ {
+  id:"dellxps13",name:"Dell XPS 13",brand:"Dell",category:"Laptops",status:"Popular",
+  image:"https://i.dell.com/is/image/DellContent/content/dam/ss2/page-specific/dell-com-landing-page/xps/xps-13-front.png",
+  description:"A compact premium laptop for work, study and everyday productivity.",
+  specs:["13.4-inch display","Up to 32GB RAM","Up to 1TB SSD"],
+  details:[
+   ["Screen","13.4-inch display; configuration varies"],
+   ["Memory","Configurations up to 32GB RAM"],
+   ["Storage","Configurations up to 1TB SSD"],
+   ["Operating system","Windows 11"],
+   ["Important","Confirm the exact configuration and Indian price"]
+  ],
+  official:"https://www.dell.com/en-in/shop/computer-pcs/lp/xps-laptops",
+  retailer:"https://www.amazon.in/s?k=Dell+XPS+13",
+  price:"Check official price"
+ },
+ {
+  id:"acericonia11",name:"Acer Iconia Tab 11 5G",brand:"Acer",category:"Tablets",status:"New Launch",
+  image:"https://static-ecapac.acer.com/media/wysiwyg/Frame-3_18.jpg",
+  description:"An Android tablet with 5G connectivity and a 10.95-inch display.",
+  specs:["10.95-inch FHD","90Hz display","8GB RAM / 128GB"],
+  details:[
+   ["Display","10.95-inch FHD IPS, 90Hz"],
+   ["Memory","8GB RAM"],
+   ["Storage","128GB; expansion supported"],
+   ["Connectivity","Wi-Fi and 5G calling variant"],
+   ["Availability","Check the official store for the current stock status"]
+  ],
+  official:"https://store.acer.com/en-in/acer-iconia-tab-11-27-81-cm-10-95-90-hz-ips-display-1200-1920-fhd-450-nits-8gb-ram-128gb-storage-13mp-rear-8mp-front-camera-fingerprint-reader-wi-fi-5g-lte-calling-android-16-0-bt-5-3-slim-metal-body-slategray-stylus-pen",
+  retailer:"https://www.amazon.in/s?k=Acer+Iconia+Tab+11+5G",
+  price:"Official store price may vary by configuration"
+ }
 ];
 
-const grid = document.getElementById("productGrid");
-const searchInput = document.getElementById("searchInput");
-const categorySelect = document.getElementById("categorySelect");
-const sortSelect = document.getElementById("sortSelect");
-const resultCount = document.getElementById("resultCount");
-const dialog = document.getElementById("productDialog");
-const modalContent = document.getElementById("modalContent");
-let selectedCategory = "All";
-let selectedStatus = "All";
+const grid=document.getElementById("grid");
+const search=document.getElementById("search");
+const category=document.getElementById("category");
+const count=document.getElementById("count");
+const dialog=document.getElementById("dialog");
+const modalBody=document.getElementById("modalBody");
+let statusFilter="All";
 
-document.getElementById("year").textContent = new Date().getFullYear();
-
-function escapeHTML(value){
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[char]));
+function safe(s){
+ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function deviceType(category){
-  if(category === "Phones") return "phone";
-  if(category === "Laptops") return "laptop";
-  if(category === "Tablets") return "tablet";
-  if(category === "Wearables") return "watch";
-  return "audio";
-}
-function statusClass(status){
-  if(status === "Upcoming") return "upcoming";
-  if(status === "Popular") return "popular";
-  return "";
-}
-function artHTML(product, large=false){
-  return `<div class="product-art${large ? " modal-art" : ""}" aria-label="Illustrative ${escapeHTML(product.category)} graphic">
-    ${large ? "" : `<span class="art-label">${escapeHTML(product.category.toUpperCase())} · ILLUSTRATION</span>`}
-    <div class="device ${deviceType(product.category)}" aria-hidden="true"></div>
-  </div>`;
-}
-function retailerURL(product){
-  return product.retailer;
-}
-function filteredProducts(){
-  let list = products.filter(p => {
-    const text = `${p.name} ${p.brand} ${p.category} ${p.description} ${p.specs.join(" ")}`.toLowerCase();
-    const searchMatches = text.includes(searchInput.value.trim().toLowerCase());
-    const categoryMatches = selectedCategory === "All" || p.category === selectedCategory;
-    const statusMatches = selectedStatus === "All" || p.status === selectedStatus;
-    return searchMatches && categoryMatches && statusMatches;
-  });
-  if(sortSelect.value === "name") list.sort((a,b)=>a.name.localeCompare(b.name));
-  if(sortSelect.value === "low") list.sort((a,b)=>(a.price ?? Infinity)-(b.price ?? Infinity));
-  if(sortSelect.value === "high") list.sort((a,b)=>(b.price ?? -Infinity)-(a.price ?? -Infinity));
-  if(sortSelect.value === "newest") list.sort((a,b)=>b.date-a.date);
-  return list;
-}
-function renderProducts(){
-  const list = filteredProducts();
-  resultCount.textContent = `${list.length} product${list.length===1?"":"s"} found`;
-  if(!list.length){
-    grid.innerHTML = `<div class="empty"><h3>No matching products</h3><p>Try another name, category or status filter.</p><button class="secondary" id="resetFilters">Reset filters</button></div>`;
-    document.getElementById("resetFilters").addEventListener("click",resetFilters);
-    return;
-  }
-  grid.innerHTML = list.map(p => `
-    <article class="product-card">
-      ${artHTML(p)}
-      <div class="card-body">
-        <div class="card-top"><span class="status ${statusClass(p.status)}">${escapeHTML(p.status.toUpperCase())}</span><span class="brandline">${escapeHTML(p.brand)}</span></div>
-        <h3>${escapeHTML(p.name)}</h3>
-        <p class="product-summary">${escapeHTML(p.description)}</p>
-        <div class="specs">${p.specs.slice(0,3).map(s=>`<span class="spec">${escapeHTML(s)}</span>`).join("")}</div>
-        <div class="price">${escapeHTML(p.priceLabel)}</div>
-        <div class="card-actions">
-          <button class="details-btn" data-details="${escapeHTML(p.id)}">View details</button>
-          <a class="retail-btn" href="${escapeHTML(retailerURL(p))}" target="_blank" rel="noopener noreferrer">Find retailer ↗</a>
-        </div>
-      </div>
-    </article>`).join("");
-  grid.querySelectorAll("[data-details]").forEach(button => {
-    button.addEventListener("click", () => openDetails(button.dataset.details));
-  });
-}
-function openDetails(id){
-  const p = products.find(item => item.id === id);
-  if(!p) return;
-  modalContent.innerHTML = `
-    ${artHTML(p,true)}
-    <span class="status ${statusClass(p.status)}">${escapeHTML(p.status.toUpperCase())}</span>
-    <div class="brandline" style="margin-top:12px">${escapeHTML(p.brand)} · ${escapeHTML(p.category)}</div>
-    <h2 id="dialogTitle">${escapeHTML(p.name)}</h2>
-    <p>${escapeHTML(p.description)}</p>
-    <div class="price">${escapeHTML(p.priceLabel)}</div>
-    <div class="detail-list">
-      ${p.highlights.map(item=>`<div class="detail-item"><small>${escapeHTML(item[0])}</small><strong>${escapeHTML(item[1])}</strong></div>`).join("")}
+function render(){
+ const q=search.value.trim().toLowerCase();
+ const list=products.filter(p=>
+  (category.value==="All"||p.category===category.value)&&
+  (statusFilter==="All"||p.status===statusFilter)&&
+  (p.name+" "+p.brand+" "+p.category+" "+p.description).toLowerCase().includes(q)
+ );
+ count.textContent=list.length+" product(s) found";
+ grid.innerHTML=list.length?list.map(p=>`
+  <article class="card">
+   <div class="photo"><img src="${safe(p.image)}" alt="${safe(p.name)} product photo" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<span style=&quot;color:#26384a;text-align:center;font-size:13px&quot;>Official photo could not load.<br>Open manufacturer page.</span>'"></div>
+   <div class="body">
+    <span class="status">${safe(p.status.toUpperCase())}</span><span class="brand">${safe(p.brand)}</span>
+    <h3>${safe(p.name)}</h3>
+    <p>${safe(p.description)}</p>
+    <div class="specs">${p.specs.map(s=>`<span class="spec">${safe(s)}</span>`).join("")}</div>
+    <p class="note">${safe(p.price)}</p>
+    <div class="actions">
+     <button class="details" data-id="${safe(p.id)}">View details</button>
+     <a class="retail" href="${safe(p.official)}" target="_blank" rel="noopener noreferrer">Official product ↗</a>
     </div>
-    <p class="note">${escapeHTML(p.note)}</p>
-    <div class="modal-actions">
-      <a class="primary" href="${escapeHTML(retailerURL(p))}" target="_blank" rel="noopener noreferrer">Find retailer listings ↗</a>
-      <a class="secondary" href="${escapeHTML(p.official)}" target="_blank" rel="noopener noreferrer">Manufacturer website ↗</a>
-    </div>`;
-  if(typeof dialog.showModal === "function") dialog.showModal();
-  else alert(p.name + "\\n\\n" + p.description + "\\n\\n" + p.note);
+    <p class="note"><a href="${safe(p.retailer)}" target="_blank" rel="noopener noreferrer">Search Amazon listings ↗</a></p>
+   </div>
+  </article>`).join(""):'<div class="empty">No matching products. Try another search or category.</div>';
+
+ grid.querySelectorAll("[data-id]").forEach(btn=>btn.addEventListener("click",()=>openProduct(btn.dataset.id)));
 }
-function resetFilters(){
-  searchInput.value="";
-  selectedCategory="All";
-  selectedStatus="All";
-  categorySelect.value="All";
-  sortSelect.value="featured";
-  document.querySelectorAll("[data-category]").forEach(b=>b.classList.toggle("active",b.dataset.category==="All"));
-  document.querySelectorAll("[data-status]").forEach(b=>b.classList.toggle("active",b.dataset.status==="All"));
-  renderProducts();
+function openProduct(id){
+ const p=products.find(x=>x.id===id);
+ if(!p)return;
+ modalBody.innerHTML=`
+  <div class="modal-photo"><img src="${safe(p.image)}" alt="${safe(p.name)} product photo"></div>
+  <span class="status">${safe(p.status.toUpperCase())}</span>
+  <h2 id="dialogTitle">${safe(p.name)}</h2>
+  <p>${safe(p.description)}</p>
+  <div class="specs">${p.specs.map(s=>`<span class="spec">${safe(s)}</span>`).join("")}</div>
+  ${p.details.map(d=>`<p><strong>${safe(d[0])}:</strong> ${safe(d[1])}</p>`).join("")}
+  <p class="note">Specifications can vary by configuration. Confirm the details on the manufacturer's page before buying.</p>
+  <p><a class="btn primary" href="${safe(p.official)}" target="_blank" rel="noopener noreferrer">Open official product page ↗</a></p>
+  <p><a class="btn" href="${safe(p.retailer)}" target="_blank" rel="noopener noreferrer">Search Amazon listings ↗</a></p>`;
+ dialog.showModal();
 }
-searchInput.addEventListener("input",renderProducts);
-categorySelect.addEventListener("change",()=>{
-  selectedCategory=categorySelect.value;
-  document.querySelectorAll("[data-category]").forEach(b=>b.classList.toggle("active",b.dataset.category===selectedCategory));
-  renderProducts();
-});
-sortSelect.addEventListener("change",renderProducts);
-document.querySelectorAll("[data-category]").forEach(button=>{
-  button.addEventListener("click",()=>{
-    selectedCategory=button.dataset.category;
-    categorySelect.value=selectedCategory;
-    document.querySelectorAll("[data-category]").forEach(b=>b.classList.toggle("active",b===button));
-    renderProducts();
-    document.getElementById("products").scrollIntoView({behavior:"smooth"});
-  });
-});
-document.querySelectorAll("[data-status]").forEach(button=>{
-  button.addEventListener("click",()=>{
-    selectedStatus=button.dataset.status;
-    document.querySelectorAll("[data-status]").forEach(b=>b.classList.toggle("active",b===button));
-    renderProducts();
-  });
-});
-document.getElementById("closeDialog").addEventListener("click",()=>dialog.close());
-dialog.addEventListener("click",event=>{
-  if(event.target===dialog) dialog.close();
-});
-document.addEventListener("keydown",event=>{
-  if(event.key==="Escape" && dialog.open) dialog.close();
-});
-renderProducts();
+search.addEventListener("input",render);
+category.addEventListener("change",render);
+document.querySelectorAll("[data-status]").forEach(btn=>btn.addEventListener("click",()=>{
+ statusFilter=btn.dataset.status;
+ document.querySelectorAll("[data-status]").forEach(b=>b.classList.toggle("active",b===btn));
+ render();
+}));
+document.getElementById("close").addEventListener("click",()=>dialog.close());
+dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
+render();
 </script>
 </body>
 </html>
