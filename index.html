@@ -6,6 +6,8 @@
 <meta name="theme-color" content="#081321">
 <meta name="description" content="Explore technology products and practical buying guides from Nivoget. Compare key features, verify specifications and visit official manufacturer pages before buying.">
 <link rel="canonical" href="https://mohitpanchwan107-ux.github.io/techsaathi/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Nivoget","alternateName":"Nivoget — Technology. Made Clear.","url":"https://mohitpanchwan107-ux.github.io/techsaathi/","description":"Electronics, gadgets and home-appliance discovery with practical buying guides."}</script>
 <meta property="og:title" content="Nivoget | Technology. Made Clear.">
 <meta property="og:description" content="Explore tech products and practical buying guides. Verify model details with official manufacturer pages.">
 <meta property="og:type" content="website">
@@ -42,7 +44,7 @@ dialog{width:min(680px,92vw);max-height:88vh;overflow:auto;background:#0b1b2c;co
 <article class="guide"><div class="eyebrow">HOME APPLIANCES</div><h3>Choose appliances with confidence</h3><p>Compare TVs, refrigerators, washing machines, ACs and kitchen appliances.</p><a href="home-appliances-buying-guide.html">Read home appliances guide →</a></article>
 </div></section>
 </main>
-<footer><div class="wrap foot"><div><a class="logo" href="index.html">Nivo<span>get</span></a><p>Technology. Made Clear.</p></div><div class="footlinks"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="affiliate-disclosure.html">Affiliate Disclosure</a><a href="editorial-policy.html">Editorial Policy</a><a href="smartphone-buying-guide.html">Smartphone guide</a><a href="laptop-buying-guide.html">Laptop guide</a><a href="tablet-buying-guide.html">Tablet guide</a></div></div></footer>
+<footer><div class="wrap foot"><div><a class="logo" href="index.html">Nivo<span>get</span></a><p>Technology. Made Clear.</p></div><div class="footlinks"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="affiliate-disclosure.html">Affiliate Disclosure</a><a href="editorial-policy.html">Editorial Policy</a><a href="smartphone-buying-guide.html">Smartphone guide</a><a href="laptop-buying-guide.html">Laptop guide</a><a href="tablet-buying-guide.html">Tablet guide</a><a href="home-appliances-buying-guide.html">Home appliances guide</a></div></div></footer>
 <dialog id="dialog" aria-labelledby="dialogTitle"><div class="modal-head"><strong>NIVOGET · PRODUCT DETAILS</strong><button class="close" id="close" aria-label="Close product details">×</button></div><div class="modal-body" id="modalBody"></div></dialog>
 <script>
 const products=[
@@ -126,7 +128,7 @@ const products=[
 const grid=document.getElementById("grid"),search=document.getElementById("search"),clearSearch=document.getElementById("clearSearch"),category=document.getElementById("category"),sort=document.getElementById("sort"),count=document.getElementById("count"),dialog=document.getElementById("dialog"),modalBody=document.getElementById("modalBody");
 let statusFilter="All";
 function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function art(p){if(!p.image)return '<div class="illustration"><span class="emoji">'+safe(p.icon)+'</span><small>Illustrative category preview</small></div>';return '<img src="'+safe(p.image)+'" alt="'+safe(p.name)+' product photo" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.classList.add(\'image-failed\')">';}
+function art(p){if(!p.image)return '<div class="illustration"><span class="emoji">'+safe(p.icon)+'</span><small>Illustrative category preview</small></div>';return '<img src="'+safe(p.image)+'" alt="'+safe(p.name)+' product image" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.classList.add(\'image-failed\')">';}
 function render(){
  const q=search.value.trim().toLowerCase();
  const tokens=q.split(/\s+/).filter(Boolean);
