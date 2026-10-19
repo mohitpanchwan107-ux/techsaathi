@@ -24,7 +24,9 @@ PAGES
 - robots.txt and sitemap.xml — search-engine discovery
 
 CATALOGUE STATUS
-- Homepage currently advertises 75 picks across 29 categories.
+- Homepage catalogue contains 75 product cards across 29 categories.
+- Current source audit found 12 explicit product-image URLs and 63 cards that use labelled illustrative category previews; external image loading still needs a live visual check.
+- Current source audit found 11 direct Amazon product URLs and 64 Amazon search-result URLs. Search links are intentionally labelled as searches; the exact item, seller and current listing still need checking.
 - Some entries represent product families rather than a verified exact model.
 - Some cards use labelled illustrative category previews instead of exact-model product photography.
 - Some retailer buttons open model-search results rather than a verified exact product listing.
@@ -34,8 +36,8 @@ CATALOGUE STATUS
 
 PHASE 1 FINAL CHECKLIST — ITEMS STILL REQUIRING MANUAL/EXTERNAL VERIFICATION
 1. Test search, category filters, sorting and every product-details popup on desktop and mobile.
-2. Review all image URLs and replace illustrative previews with verified exact-model images where available and licensed/officially supplied.
-3. Review retailer links one by one; keep search links clearly described as searches and confirm exact model when possible.
+2. Review the 12 product-image URLs for loading and exact-model match; replace the 63 illustrative previews with verified exact-model images where available and officially supplied/licensed.
+3. Check the 11 direct Amazon product URLs for current item/model match; review the 64 search links and keep them clearly described as search results until an exact listing is verified.
 4. Open and check every important page link, 404 page, robots.txt and sitemap.xml.
 5. Check GitHub Pages deployment status after each commit and retest the live site.
 6. Google Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
