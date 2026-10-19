@@ -114,14 +114,14 @@ jobs:
 
           for path in sorted(Path(".").glob("*.html")):
               source = path.read_text(encoding="utf-8")
-              scripts = re.finditer(r"<script\\b([^>]*)>([\\s\\S]*?)</script>", source, re.I)
+              scripts = re.finditer(r"<script\b([^>]*)>([\s\S]*?)</script>", source, re.I)
               for i, match in enumerate(scripts, 1):
                   attrs, script = match.group(1), match.group(2)
                   # JSON-LD is data, not executable JavaScript.
-                  if re.search(r"""\\btype\\s*=\\s*["']application/ld\\+json["']""", attrs, re.I):
+                  if re.search(r"""\btype\s*=\s*["']application/ld\+json["']""", attrs, re.I):
                       continue
                   # External script contents are empty or not part of this inline check.
-                  if re.search(r"""\\bsrc\\s*=""", attrs, re.I):
+                  if re.search(r"""\bsrc\s*=""", attrs, re.I):
                       continue
                   with tempfile.NamedTemporaryFile(mode="w", suffix=".js", encoding="utf-8") as temp:
                       temp.write(script)
