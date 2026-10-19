@@ -43,7 +43,7 @@ PHASE 1 FINAL CHECKLIST — ITEMS STILL REQUIRING MANUAL/EXTERNAL VERIFICATION
 5. Check GitHub Pages deployment status after each commit and retest the live site.
 6. Google Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
 7. The home-appliances guide is now available in English and Hinglish. Smartphone, laptop and tablet guides still need Hinglish versions if full bilingual coverage is required.
-7. Confirm teacher's rubric/project instructions. A website being live does not prove it satisfies every classroom requirement.
+8. Confirm teacher's rubric/project instructions. A website being live does not prove it satisfies every classroom requirement.
 
 PUBLISHING
 GitHub Pages deploys changes from the configured branch, but publishing may take a short time. Check:
