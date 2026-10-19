@@ -37,16 +37,19 @@ CATALOGUE STATUS
 - Product cards are manually maintained; products do not automatically update from a retailer feed/API.
 - Do not claim hands-on testing, exact current prices or guaranteed availability unless verified.
 
-PHASE 1 FINAL CHECKLIST — ITEMS STILL REQUIRING MANUAL/EXTERNAL VERIFICATION
-1. Test search, category filters, sorting and every product-details popup on desktop and mobile.
-2. User visually checked the product images on the live site and reported they look okay. Still review all 75 image sources for exact-model/variant match and source terms/permissions; the source count does not prove reuse is permitted.
-3. Re-open the 10 direct Amazon product URLs to confirm the current listing and exact variant; review the 65 search links and keep them clearly described as search results until an exact listing is verified.
-4. Static source audit checked all 15 HTML files in the repository and found no missing local page links or broken local anchors. The GitHub Actions site-check workflow validates internal links, catalogue data, product image/retailer URL coverage, and inline JavaScript syntax. The automated product check confirms all 75 cards have HTTPS image URLs and retailer links, with 65 Amazon search queries matching product names and 10 direct product URLs. These checks do not verify that external images/listings remain live or that image reuse permissions are granted. This does not replace a live browser/mobile test; recheck the deployed pages, 404 page, robots.txt and sitemap.xml.
-5. Phase 2 accessibility/SEO cleanup: refined policy-page meta descriptions, added reduced-motion support to the homepage, and corrected the smartphone guide's Hinglish language tag. Verify the latest GitHub Pages deployment status before assuming the live copy has updated.
-6. Check GitHub Pages deployment status after each commit and retest the live site.
-7. Google Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
-8. Smartphone guide includes English/Hinglish content; laptop, tablet and home-appliances guides are now available in English and Hinglish.
-9. Confirm teacher's rubric/project instructions. A website being live does not prove it satisfies every classroom requirement.
+PHASE 1 / LIVE QA STATUS — UPDATED 19 OCTOBER 2026
+PASS — User manually checked the live homepage, search, category filter, sorting, View details, buying guide and mobile layout.
+PASS — GitHub Actions site checks: internal links/catalogue data, product image and retailer URL coverage, and inline JavaScript syntax.
+PASS — Latest verified GitHub Pages deployment completed successfully for commit 42b87aeb7ac9cd476e3d0042cacbfddea4cf9e92. Any later commit needs its own deployment check.
+PASS — Static source audit checked all 15 HTML files and found no missing local page references.
+PASS — Catalogue has 75 product cards across 29 categories; each has an HTTPS image URL, manufacturer URL and retailer URL. Current automated audit reports 10 direct Amazon product URLs and 65 Amazon search-result URLs; the search terms match the corresponding product-card names.
+
+REMAINING LAUNCH TASKS — EXTERNAL / OWNER-ONLY VERIFICATION
+1. Verify the 75 image sources for exact model/variant match and source terms/permissions. User reports images look okay on the live page; visual loading does not establish reuse rights.
+2. Re-open the 10 direct Amazon product URLs to confirm current availability and exact variants. The other 65 are clearly labelled search-result links, not verified exact product listings.
+3. Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
+4. Confirm the teacher's rubric/project instructions. A working website does not automatically satisfy every classroom requirement.
+5. Recheck the latest deployment after any future change. GitHub Actions workflow checks are source-code checks and do not prove every third-party link or image will stay live.
 
 PUBLISHING
 GitHub Pages deploys changes from the configured branch, but publishing may take a short time. Check:
