@@ -125,14 +125,14 @@ jobs:
           import sys
 
           homepage = Path("index.html").read_text(encoding="utf-8")
-          product_lines = [line for line in homepage.splitlines() if re.search(r'(?:"?id"?)\\s*:\\s*"[^"]+"', line)]
+          product_lines = [line for line in homepage.splitlines() if re.search(r'(?:"?id"?)\s*:\s*"[^"]+"', line)]
           errors = []
           search_count = 0
           direct_count = 0
 
           for line in product_lines:
               def field(name):
-                  match = re.search(r'"?' + re.escape(name) + r'"?\\s*:\\s*"([^"]+)"', line)
+                  match = re.search(r'"?' + re.escape(name) + r'"?\s*:\s*"([^"]+)"', line)
                   return match.group(1) if match else None
 
               name, image, retailer = field("name"), field("image"), field("retailer")
@@ -164,7 +164,7 @@ jobs:
 
           if errors:
               print("Product image/retailer audit failed:")
-              print("\\n".join("- " + error for error in errors))
+              print("\n".join("- " + error for error in errors))
               sys.exit(1)
           print(f"Product URL audit passed: {len(product_lines)} products, HTTPS image URLs present, {search_count} exact-name Amazon searches, {direct_count} direct product URLs.")
           PY
