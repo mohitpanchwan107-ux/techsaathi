@@ -42,7 +42,7 @@ CATALOGUE STATUS
 PHASE 1 / LIVE QA STATUS — UPDATED 19 OCTOBER 2026
 PASS — User manually checked the live homepage, search, category filter, sorting, View details, buying guide and mobile layout.
 PASS — GitHub Actions site checks: internal links/catalogue data, product image and retailer URL coverage, inline JavaScript syntax, SEO metadata and sitemap coverage. Latest run reports 75 product entries, 65 exact-name Amazon search URLs, 10 direct product URLs, and 13 canonical pages included in sitemap.
-PASS — Latest verified GitHub Pages deployment completed successfully for commit 5986008f7fee7b3d75a16b41d02d945211e5854b (Add bilingual Diwali guides to sitemap). Site-check workflow also passed for that same commit. Any later commit needs its own deployment check.
+PASS — GitHub Pages deployment succeeded for the latest repository commit checked on 19 October 2026, and the automated site-check workflow passed. After any future commit, verify its own deployment and site-check run before declaring it live.
 PASS — Static source audit checked all 16 HTML files and found no missing local page references.
 PASS — Two Diwali shopping guides are available in English and Hinglish, linked to each other and included in the 15-page canonical sitemap.
 PASS — Catalogue has 75 product cards across 29 categories; each has an HTTPS image URL, manufacturer URL and retailer URL. Current automated audit reports 10 direct Amazon product URLs and 65 Amazon search-result URLs; the search terms match the corresponding product-card names.
