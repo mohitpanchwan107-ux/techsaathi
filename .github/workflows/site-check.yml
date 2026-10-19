@@ -81,7 +81,7 @@ jobs:
               errors.append("Catalogue categories missing from category filter: " + ", ".join(sorted(missing)))
 
           # Product entries must include the minimum fields needed to render safe cards.
-          product_block = homepage[homepage.find("const products=["):homepage.find("\\n];", homepage.find("const products=["))]
+          product_block = homepage[homepage.find("const products=["):homepage.find("\n];", homepage.find("const products=["))]
           if not product_block or product_block == homepage:
               errors.append("Could not locate homepage product catalogue")
           for required_field in ['"name":', '"brand":', '"category":', '"description":', '"official":', '"retailer":']:
@@ -112,7 +112,7 @@ jobs:
           import sys
           for path in Path(".").glob("*.html"):
               source = path.read_text(encoding="utf-8")
-              for i, script in enumerate(re.findall(r"<script(?:\\s[^>]*)?>([\\s\\S]*?)</script>", source, re.I), 1):
+              for i, script in enumerate(re.findall(r"<script(?:\s[^>]*)?>([\s\S]*?)</script>", source, re.I), 1):
                   result = subprocess.run(["node", "--check", "-"], input=script, text=True, capture_output=True)
                   if result.returncode:
                       print(f"JavaScript syntax error in {path}, script {i}:")
