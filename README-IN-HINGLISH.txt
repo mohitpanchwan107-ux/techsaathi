@@ -41,7 +41,7 @@ PHASE 1 FINAL CHECKLIST — ITEMS STILL REQUIRING MANUAL/EXTERNAL VERIFICATION
 1. Test search, category filters, sorting and every product-details popup on desktop and mobile.
 2. Review the 12 product-image URLs for loading and exact-model match; replace the 63 illustrative previews with verified exact-model images where available and officially supplied/licensed. Do not label category illustrations as exact product photos.
 3. Check the 11 direct Amazon product URLs for current item/model match; review the 64 search links and keep them clearly described as search results until an exact listing is verified.
-4. Open and check every important page link, 404 page, robots.txt and sitemap.xml.
+4. Static source audit checked 14 HTML pages and found no missing local page links or broken local anchors in those files. This does not replace a live browser/mobile test; recheck the deployed pages, 404 page, robots.txt and sitemap.xml.
 5. Check GitHub Pages deployment status after each commit and retest the live site.
 6. Google Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
 7. Smartphone guide includes English/Hinglish content; laptop, tablet and home-appliances guides are now available in English and Hinglish.
