@@ -112,11 +112,18 @@ jobs:
           import sys
           for path in Path(".").glob("*.html"):
               source = path.read_text(encoding="utf-8")
-              for i, script in enumerate(re.findall(r"<script(?:\s[^>]*)?>([\s\S]*?)</script>", source, re.I), 1):
+              scripts = re.finditer(r"<script\\b([^>]*)>([\\s\\S]*?)</script>", source, re.I)
+              for i, match in enumerate(scripts, 1):
+                  attrs, script = match.group(1), match.group(2)
+                  # JSON-LD structured data is JSON, not executable JavaScript.
+                  if re.search(r"""\\btype\\s*=\\s*["']application/ld\\+json["']""", attrs, re.I):
+                      continue
+                  if re.search(r"""\\bsrc\\s*=""", attrs, re.I):
+                      continue
                   result = subprocess.run(["node", "--check", "-"], input=script, text=True, capture_output=True)
                   if result.returncode:
                       print(f"JavaScript syntax error in {path}, script {i}:")
                       print(result.stderr)
                       sys.exit(1)
-          print("Inline JavaScript syntax checks passed.")
+          print("Inline JavaScript syntax checks passed (JSON-LD and external scripts excluded).")
           PY
