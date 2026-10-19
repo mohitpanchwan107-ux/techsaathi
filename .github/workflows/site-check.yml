@@ -67,7 +67,9 @@ jobs:
 
           for required in ["robots.txt", "sitemap.xml", "404.html", "about.html", "contact.html",
                            "privacy.html", "affiliate-disclosure.html", "editorial-policy.html",
-                           "smartphone-buying-guide.html", "laptop-buying-guide.html", "tablet-buying-guide.html"]:
+                           "smartphone-buying-guide.html", "laptop-buying-guide.html", "laptop-buying-guide-hinglish.html",
+                           "tablet-buying-guide.html", "tablet-buying-guide-hinglish.html",
+                           "home-appliances-buying-guide.html", "home-appliances-buying-guide-hinglish.html"]:
               if not (root / required).is_file():
                   errors.append(f"Missing required site file: {required}")
 
@@ -90,6 +92,17 @@ jobs:
                   pass
           if len(ids) < 70:
               errors.append(f"Phase 1 catalogue expected at least 70 products; found {len(ids)}")
+
+          # Keep every product card complete: image, manufacturer link and retailer link.
+          image_count = len(re.findall(r'(?:\bimage\s*:|"image"\s*:)\s*"https://', product_block))
+          official_count = len(re.findall(r'(?:\bofficial\s*:|"official"\s*:)\s*"https://', product_block))
+          retailer_count = len(re.findall(r'(?:\bretailer\s*:|"retailer"\s*:)\s*"https://', product_block))
+          if image_count != len(ids):
+              errors.append(f"Expected one HTTPS image URL per product; found {image_count} image URLs for {len(ids)} products")
+          if official_count != len(ids):
+              errors.append(f"Expected one HTTPS manufacturer URL per product; found {official_count} URLs for {len(ids)} products")
+          if retailer_count != len(ids):
+              errors.append(f"Expected one HTTPS retailer URL per product; found {retailer_count} URLs for {len(ids)} products")
 
           # Catch unsafe/malformed outbound URL schemes in catalogue retailer/manufacturer links.
           for field, value in re.findall(r'(?:official|retailer)\s*:\s*"([^"]+)"|"(?:official|retailer)"\s*:\s*"([^"]+)"', product_block):
