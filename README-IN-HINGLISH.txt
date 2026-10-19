@@ -13,9 +13,11 @@ PAGES
 - index.html — homepage, product explorer, search, filters and product details
 - about.html — about Nivoget
 - contact.html — feedback/contact information
-- smartphone-buying-guide.html — smartphone guide
-- laptop-buying-guide.html — laptop guide
-- tablet-buying-guide.html — tablet guide
+- smartphone-buying-guide.html — smartphone guide with English/Hinglish toggle
+- laptop-buying-guide.html — English laptop guide
+- laptop-buying-guide-hinglish.html — Hinglish laptop guide
+- tablet-buying-guide.html — English tablet guide
+- tablet-buying-guide-hinglish.html — Hinglish tablet guide
 - home-appliances-buying-guide.html — English TV, refrigerator, washing-machine, AC and kitchen-appliance guide
 - home-appliances-buying-guide-hinglish.html — Hinglish version of the home-appliances guide
 - privacy.html — privacy information
@@ -42,7 +44,7 @@ PHASE 1 FINAL CHECKLIST — ITEMS STILL REQUIRING MANUAL/EXTERNAL VERIFICATION
 4. Open and check every important page link, 404 page, robots.txt and sitemap.xml.
 5. Check GitHub Pages deployment status after each commit and retest the live site.
 6. Google Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
-7. The home-appliances guide is now available in English and Hinglish. Smartphone, laptop and tablet guides still need Hinglish versions if full bilingual coverage is required.
+7. Smartphone guide includes English/Hinglish content; laptop, tablet and home-appliances guides are now available in English and Hinglish.
 8. Confirm teacher's rubric/project instructions. A website being live does not prove it satisfies every classroom requirement.
 
 PUBLISHING
