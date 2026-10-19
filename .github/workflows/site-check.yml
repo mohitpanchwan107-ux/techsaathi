@@ -1,0 +1,73 @@
+name: Nivoget site checks
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate internal links and catalogue data
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          import re
+          import sys
+
+          root = Path(".")
+          html_files = sorted(root.glob("*.html"))
+          errors = []
+          if not (root / "index.html").is_file():
+              errors.append("Missing root index.html")
+
+          known_root_assets = {"nivoget-favicon.svg", "nivoget-logo.svg", "robots.txt", "sitemap.xml"}
+          for html in html_files:
+              source = html.read_text(encoding="utf-8")
+              for raw in re.findall(r'''(?:href|src)\s*=\s*["']([^"']+)["']''', source, re.I):
+                  url = urlsplit(raw)
+                  if url.scheme or url.netloc or not url.path:
+                      continue
+                  target = url.path.lstrip("/")
+                  if target and not (root / target).is_file() and target not in known_root_assets:
+                      errors.append(f"{html}: missing internal target {raw}")
+
+          homepage = (root / "index.html").read_text(encoding="utf-8") if (root / "index.html").exists() else ""
+          ids = re.findall(r'\{id:"([^"]+)"', homepage)
+          if len(ids) != len(set(ids)):
+              errors.append("Duplicate product IDs in homepage catalogue")
+          if len(ids) < 25:
+              errors.append(f"Expected at least 25 catalogue entries; found {len(ids)}")
+
+          statuses = set(re.findall(r'status:"([^"]+)"', homepage))
+          filters = set(re.findall(r'data-status="([^"]+)"', homepage))
+          if statuses - {"Featured", "Product range"}:
+              errors.append("Unexpected catalogue status label: " + ", ".join(sorted(statuses - {"Featured", "Product range"})))
+          if filters - statuses - {"All"}:
+              errors.append("A status filter has no matching product status: " + ", ".join(sorted(filters - statuses - {"All"})))
+
+          for required in ["robots.txt", "sitemap.xml", "404.html", "about.html", "contact.html",
+                           "privacy.html", "affiliate-disclosure.html", "editorial-policy.html",
+                           "smartphone-buying-guide.html", "laptop-buying-guide.html", "tablet-buying-guide.html"]:
+              if not (root / required).is_file():
+                  errors.append(f"Missing required site file: {required}")
+
+          if errors:
+              print("Nivoget validation failed:")
+              print("\n".join("- " + error for error in errors))
+              sys.exit(1)
+          print(f"Nivoget validation passed: {len(html_files)} HTML files, {len(ids)} unique product entries, internal links checked.")
+          PY
