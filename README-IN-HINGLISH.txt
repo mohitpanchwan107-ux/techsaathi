@@ -31,7 +31,7 @@ PAGES
 CATALOGUE STATUS
 - Homepage catalogue contains 75 product cards across 29 categories.
 - Current source audit found image URLs on all 75 product cards; no cards remain without an image URL. The 47 previously illustrative previews have been replaced with product-specific or clearly identified model/range images. External image loading, exact model/variant match, and source permissions/terms have not all been live-verified and must be checked before launch.
-- Latest source audit found 6 direct Amazon product URLs and 69 Amazon search-result URLs across the 75 cards. Direct links currently point to Samsung UE86AH TV, Logitech G502 HERO, Canon EOS R50, Brother DCP-T535DW, TP-Link Deco M4 2-pack and PS5 Slim. All 69 Amazon search links use the exact full product-card name as the search query; automated checks validate this match. Search links are search results, not verified exact listings. This is a source-code audit, not a live check that a listing is available or matches the exact model/variant; open each direct listing before launch.
+- Latest source audit found 10 direct Amazon product URLs and 65 Amazon search-result URLs across the 75 cards. The 10 direct links currently point to Google Pixel 10, OnePlus 13R, Logitech K380s, Echo Dot 5th Gen, Samsung UE86AH TV, Logitech G502 HERO, Canon EOS R50, Brother DCP-T535DW, TP-Link Deco M4 2-pack and PS5 Slim. All 65 Amazon search links use the exact full product-card name as the search query; automated checks validate this match. Search links are search results, not verified exact listings. This is a source-code audit, not a live check that a listing is available or matches the exact model/variant; open each direct listing before launch.
 - Some entries represent product families rather than a verified exact model.
 - Some cards use third-party retailer images; verify source terms/permissions and exact model/variant before launch.
 - Some retailer buttons open model-search results rather than a verified exact product listing.
@@ -41,7 +41,7 @@ CATALOGUE STATUS
 
 PHASE 1 / LIVE QA STATUS — UPDATED 19 OCTOBER 2026
 PASS — User manually checked the live homepage, search, category filter, sorting, View details, buying guide and mobile layout.
-PASS — GitHub Actions site checks: internal links/catalogue data, product image and retailer URL coverage, inline JavaScript syntax, SEO metadata and sitemap coverage. Latest run reports 75 product entries, 65 exact-name Amazon search URLs, 10 direct product URLs, and 13 canonical pages included in sitemap.
+PASS — GitHub Actions site checks: internal links/catalogue data, product image and retailer URL coverage, inline JavaScript syntax, SEO metadata and sitemap coverage. Latest run reports 75 product entries, 65 exact-name Amazon search URLs, 10 direct product URLs, and 15 canonical pages included in sitemap.
 PASS — GitHub Pages deployment succeeded for the latest repository commit checked on 19 October 2026, and the automated site-check workflow passed. After any future commit, verify its own deployment and site-check run before declaring it live.
 PASS — Static source audit checked all 16 HTML files and found no missing local page references.
 PASS — Two Diwali shopping guides are available in English and Hinglish, linked to each other and included in the 15-page canonical sitemap.
