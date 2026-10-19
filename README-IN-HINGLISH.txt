@@ -41,11 +41,12 @@ PHASE 1 FINAL CHECKLIST — ITEMS STILL REQUIRING MANUAL/EXTERNAL VERIFICATION
 1. Test search, category filters, sorting and every product-details popup on desktop and mobile.
 2. User visually checked the product images on the live site and reported they look okay. Still review all 75 image sources for exact-model/variant match and source terms/permissions; the source count does not prove reuse is permitted.
 3. Re-open the 6 direct Amazon product URLs to confirm the current listing and exact variant; review the 69 search links and keep them clearly described as search results until an exact listing is verified.
-4. Static source audit checked all 15 HTML files in the repository and found no missing local page links. This does not replace a live browser/mobile test; recheck the deployed pages, 404 page, robots.txt and sitemap.xml.
-5. Check GitHub Pages deployment status after each commit and retest the live site.
-6. Google Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
-7. Smartphone guide includes English/Hinglish content; laptop, tablet and home-appliances guides are now available in English and Hinglish.
-8. Confirm teacher's rubric/project instructions. A website being live does not prove it satisfies every classroom requirement.
+4. Static source audit checked all 15 HTML files in the repository and found no missing local page links. GitHub Actions checks now pass for internal links, catalogue data and inline JavaScript syntax (latest successful check commit: `658f4bc67ae26717e29fe3d841063f987d363d2b`). This does not replace a live browser/mobile test; recheck the deployed pages, 404 page, robots.txt and sitemap.xml.
+5. Phase 2 SEO cleanup: refined meta descriptions for privacy, editorial policy and affiliate disclosure pages. Verify GitHub Pages deployment status before assuming the live copy has updated.
+6. Check GitHub Pages deployment status after each commit and retest the live site.
+7. Google Search Console ownership verification and sitemap submission require access to the owner's Google account; this cannot be completed from repository code alone.
+8. Smartphone guide includes English/Hinglish content; laptop, tablet and home-appliances guides are now available in English and Hinglish.
+9. Confirm teacher's rubric/project instructions. A website being live does not prove it satisfies every classroom requirement.
 
 PUBLISHING
 GitHub Pages deploys changes from the configured branch, but publishing may take a short time. Check:
