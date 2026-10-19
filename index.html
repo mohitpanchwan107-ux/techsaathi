@@ -127,7 +127,11 @@ function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;"
 function art(p){if(!p.image)return '<div class="illustration"><span class="emoji">'+safe(p.icon)+'</span><small>Illustrative category preview</small></div>';return '<img src="'+safe(p.image)+'" alt="'+safe(p.name)+' product photo" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.classList.add(\'image-failed\')">';}
 function render(){
  const q=search.value.trim().toLowerCase();
- const list=products.filter(p=>(category.value==="All"||p.category===category.value)&&(statusFilter==="All"||p.status===statusFilter)&&(p.name+" "+p.brand+" "+p.category+" "+p.description+" "+p.specs.join(" ")+" "+(p.keywords||[]).join(" ")).toLowerCase().includes(q));
+ const tokens=q.split(/\s+/).filter(Boolean);
+ const list=products.filter(p=>{
+  const searchable=(p.name+" "+p.brand+" "+p.category+" "+p.description+" "+p.specs.join(" ")+" "+(p.keywords||[]).join(" ")).toLowerCase();
+  return (category.value==="All"||p.category===category.value)&&(statusFilter==="All"||p.status===statusFilter)&&tokens.every(token=>searchable.includes(token));
+ });
  count.textContent=list.length+" products shown";
  clearSearch.disabled=!search.value.trim();
  grid.innerHTML=list.length?list.map(p=>'<article class="card"><div class="photo" data-icon="'+safe(p.icon)+'">'+art(p)+'</div><div class="body"><div class="meta"><span class="status">'+safe(p.status.toUpperCase())+'</span><span class="brand">'+safe(p.brand)+'</span></div><h3>'+safe(p.name)+'</h3><p>'+safe(p.description)+'</p><div class="specs">'+p.specs.map(s=>'<span class="spec">'+safe(s)+'</span>').join("")+'</div><div class="actions"><button class="details" data-id="'+safe(p.id)+'">View details</button><a class="official" href="'+safe(p.official)+'" target="_blank" rel="noopener noreferrer">Manufacturer ↗</a></div><a class="retailer-link" href="'+safe(p.retailer)+'" target="_blank" rel="noopener noreferrer">'+(p.retailer.includes("/dp/")?"View product on Amazon ↗":"Search Amazon for this model ↗")+'</a></div></article>').join(""):'<div class="empty">No matching products. Try another search or category.</div>';
