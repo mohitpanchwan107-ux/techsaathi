@@ -116,6 +116,58 @@ jobs:
               sys.exit(1)
           print(f"Nivoget validation passed: {len(html_files)} HTML files, {len(ids)} unique product entries, {len(category_values)} categories checked, internal links checked.")
           PY
+      - name: Validate product image and retailer URL coverage
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import urlsplit, parse_qs, unquote_plus
+          import re
+          import sys
+
+          homepage = Path("index.html").read_text(encoding="utf-8")
+          product_lines = [line for line in homepage.splitlines() if re.search(r'(?:"?id"?)\\s*:\\s*"[^"]+"', line)]
+          errors = []
+          search_count = 0
+          direct_count = 0
+
+          for line in product_lines:
+              def field(name):
+                  match = re.search(r'"?' + re.escape(name) + r'"?\\s*:\\s*"([^"]+)"', line)
+                  return match.group(1) if match else None
+
+              name, image, retailer = field("name"), field("image"), field("retailer")
+              if not name:
+                  errors.append("Product entry is missing a name")
+              if not image or not image.startswith("https://"):
+                  errors.append(f"{name or 'Unknown product'}: missing HTTPS image URL")
+              if not retailer or not retailer.startswith("https://"):
+                  errors.append(f"{name or 'Unknown product'}: missing HTTPS retailer URL")
+                  continue
+
+              parsed = urlsplit(retailer)
+              if parsed.hostname not in {"amazon.in", "www.amazon.in"}:
+                  errors.append(f"{name}: retailer URL is not Amazon India")
+              elif parsed.path == "/s" and parse_qs(parsed.query).get("k"):
+                  search_count += 1
+                  query = parse_qs(parsed.query).get("k", [""])[0]
+                  if unquote_plus(query).casefold() != (name or "").casefold():
+                      errors.append(f"{name}: Amazon search query does not exactly match product name")
+              elif "/dp/" in parsed.path or "/gp/product/" in parsed.path:
+                  direct_count += 1
+              else:
+                  errors.append(f"{name}: unrecognized Amazon retailer URL format")
+
+          if len(product_lines) < 70:
+              errors.append(f"Expected at least 70 product entries, found {len(product_lines)}")
+          if search_count + direct_count != len(product_lines):
+              errors.append(f"Retailer URL coverage mismatch: {search_count} search + {direct_count} direct for {len(product_lines)} products")
+
+          if errors:
+              print("Product image/retailer audit failed:")
+              print("\\n".join("- " + error for error in errors))
+              sys.exit(1)
+          print(f"Product URL audit passed: {len(product_lines)} products, HTTPS image URLs present, {search_count} exact-name Amazon searches, {direct_count} direct product URLs.")
+          PY
       - name: Check inline JavaScript syntax
         run: |
           python - <<'PY'
