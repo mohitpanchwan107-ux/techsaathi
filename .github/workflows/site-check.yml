@@ -46,11 +46,11 @@ jobs:
                       errors.append(f"{html}: missing internal target {raw}")
 
           homepage = (root / "index.html").read_text(encoding="utf-8") if (root / "index.html").exists() else ""
-          ids = re.findall(r'\{id:"([^"]+)"', homepage)
+          ids = re.findall(r'\{\s*"?id"?:"([^"]+)"', homepage)
           if len(ids) != len(set(ids)):
               errors.append("Duplicate product IDs in homepage catalogue")
-          if len(ids) < 25:
-              errors.append(f"Expected at least 25 catalogue entries; found {len(ids)}")
+          if len(ids) < 60:
+              errors.append(f"Expected at least 60 catalogue entries across electronics categories; found {len(ids)}")
 
           statuses = set(re.findall(r'status:"([^"]+)"', homepage))
           filters = set(re.findall(r'data-status="([^"]+)"', homepage))
@@ -58,6 +58,12 @@ jobs:
               errors.append("Unexpected catalogue status label: " + ", ".join(sorted(statuses - {"Featured", "Product range"})))
           if filters - statuses - {"All"}:
               errors.append("A status filter has no matching product status: " + ", ".join(sorted(filters - statuses - {"All"})))
+
+          categories = set(re.findall(r'category:"([^"]+)"', homepage)) | set(re.findall(r'"category":"([^"]+)"', homepage))
+          options = set(re.findall(r'<option value="([^"]+)">', homepage))
+          missing_categories = categories - options - {"Phones", "Laptops", "Tablets", "Audio", "Wearables", "Accessories"}
+          if missing_categories:
+              errors.append("Catalogue categories missing from category filter: " + ", ".join(sorted(missing_categories)))
 
           for required in ["robots.txt", "sitemap.xml", "404.html", "about.html", "contact.html",
                            "privacy.html", "affiliate-disclosure.html", "editorial-policy.html",
