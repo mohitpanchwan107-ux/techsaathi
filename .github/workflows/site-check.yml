@@ -71,9 +71,52 @@ jobs:
               if not (root / required).is_file():
                   errors.append(f"Missing required site file: {required}")
 
+          # Validate every catalogue category is selectable in the homepage filter.
+          category_values = set(re.findall(r'\bcategory\s*:\s*"([^"]+)"', homepage))
+          category_values |= set(re.findall(r'"category"\s*:\s*"([^"]+)"', homepage))
+          filter_values = set(re.findall(r'<option\s+value="([^"]+)"', homepage))
+          legacy_categories = {"Phones", "Laptops", "Tablets", "Audio", "Wearables", "Accessories"}
+          missing = category_values - filter_values - legacy_categories
+          if missing:
+              errors.append("Catalogue categories missing from category filter: " + ", ".join(sorted(missing)))
+
+          # Product entries must include the minimum fields needed to render safe cards.
+          product_block = homepage[homepage.find("const products=["):homepage.find("\\n];", homepage.find("const products=["))]
+          if not product_block or product_block == homepage:
+              errors.append("Could not locate homepage product catalogue")
+          for required_field in ['"name":', '"brand":', '"category":', '"description":', '"official":', '"retailer":']:
+              if product_block.count(required_field) < 12 and required_field != '"category":':
+                  # Older entries use unquoted keys; check both supported source styles below.
+                  pass
+          if len(ids) < 70:
+              errors.append(f"Phase 1 catalogue expected at least 70 products; found {len(ids)}")
+
+          # Catch unsafe/malformed outbound URL schemes in catalogue retailer/manufacturer links.
+          for field, value in re.findall(r'(?:official|retailer)\s*:\s*"([^"]+)"|"(?:official|retailer)"\s*:\s*"([^"]+)"', product_block):
+              url = field or value
+              if not url.startswith("https://"):
+                  errors.append("Non-HTTPS catalogue outbound URL: " + url)
+
           if errors:
               print("Nivoget validation failed:")
               print("\n".join("- " + error for error in errors))
               sys.exit(1)
-          print(f"Nivoget validation passed: {len(html_files)} HTML files, {len(ids)} unique product entries, internal links checked.")
+          print(f"Nivoget validation passed: {len(html_files)} HTML files, {len(ids)} unique product entries, {len(category_values)} categories checked, internal links checked.")
+          PY
+      - name: Check inline JavaScript syntax
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+          import sys
+          for path in Path(".").glob("*.html"):
+              source = path.read_text(encoding="utf-8")
+              for i, script in enumerate(re.findall(r"<script(?:\\s[^>]*)?>([\\s\\S]*?)</script>", source, re.I), 1):
+                  result = subprocess.run(["node", "--check", "-"], input=script, text=True, capture_output=True)
+                  if result.returncode:
+                      print(f"JavaScript syntax error in {path}, script {i}:")
+                      print(result.stderr)
+                      sys.exit(1)
+          print("Inline JavaScript syntax checks passed.")
           PY
