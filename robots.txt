@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
 Sitemap: https://mohitpanchwan107-ux.github.io/techsaathi/sitemap.xml
-Sitemap: https://mohitpanchwan107-ux.github.io/techsaathi/sitemap.txt
