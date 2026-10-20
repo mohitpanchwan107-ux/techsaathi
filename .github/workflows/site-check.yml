@@ -168,6 +168,52 @@ jobs:
               sys.exit(1)
           print(f"Product URL audit passed: {len(product_lines)} products, HTTPS image URLs present, {search_count} exact-name Amazon searches, {direct_count} direct product URLs.")
           PY
+      - name: Audit remote product image responses (report only)
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          import re
+
+          homepage = Path("index.html").read_text(encoding="utf-8")
+          products = []
+          for line in homepage.splitlines():
+              if not re.search(r'\{\s*"?id"?\s*:', line):
+                  continue
+              def field(name):
+                  m = re.search(r'["\']?' + re.escape(name) + r'["\']?\s*:\s*["\']([^"\']*)["\']', line)
+                  return m.group(1) if m else ""
+              pid, name, url = field("id"), field("name"), field("image")
+              if pid and url.startswith("https://"):
+                  products.append((pid, name, url))
+
+          def probe(item):
+              pid, name, url = item
+              try:
+                  req = Request(url, method="HEAD", headers={"User-Agent": "Mozilla/5.0 NivogetImageAudit/1.0"})
+                  with urlopen(req, timeout=7) as response:
+                      ctype = response.headers.get("Content-Type", "").lower()
+                      if response.status >= 400 or (ctype and not ctype.startswith("image/")):
+                          return (pid, name, response.status, ctype or "unknown content type")
+                      return None
+              except Exception as exc:
+                  return (pid, name, "ERROR", str(exc)[:160])
+
+          failures = []
+          with ThreadPoolExecutor(max_workers=12) as pool:
+              futures = [pool.submit(probe, item) for item in products]
+              for future in as_completed(futures):
+                  result = future.result()
+                  if result:
+                      failures.append(result)
+          print(f"Remote image audit: tested {len(products)} product image URLs; {len(failures)} HEAD requests failed or were blocked.")
+          for pid, name, status, detail in sorted(failures):
+              print(f"IMAGE_AUDIT_FAIL | {pid} | {name} | {status} | {detail}")
+          print("This is a diagnostic-only audit: some CDNs block HEAD requests even when normal image loading works.")
+          PY
+
       - name: Check inline JavaScript syntax
         run: |
           python - <<'PY'
