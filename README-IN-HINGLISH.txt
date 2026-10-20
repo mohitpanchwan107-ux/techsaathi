@@ -1,4 +1,4 @@
-NIV OGET — PROJECT NOTES (UPDATED 19 OCTOBER 2026)
+NIV OGET — PROJECT NOTES (UPDATED 20 OCTOBER 2026)
 
 LIVE WEBSITE
 https://mohitpanchwan107-ux.github.io/techsaathi/
@@ -10,7 +10,7 @@ PROJECT PURPOSE
 An electronics, gadgets, accessories and home-appliances discovery website with product cards and practical buying guidance. It is an information/affiliate-ready project, not a live price-comparison API or hands-on review lab.
 
 PAGES
-- index.html — homepage, product explorer, search, filters and product details
+- index.html — homepage, product explorer, multi-keyword search, category/status filters, sorting, saved-products wishlist and side-by-side comparison for up to 3 products
 - about.html — about Nivoget
 - contact.html — feedback/contact information
 - smartphone-buying-guide.html — smartphone guide with English/Hinglish toggle
@@ -39,9 +39,10 @@ CATALOGUE STATUS
 - Product cards are manually maintained; products do not automatically update from a retailer feed/API.
 - Do not claim hands-on testing, exact current prices or guaranteed availability unless verified.
 
-PHASE 1 / LIVE QA STATUS — UPDATED 19 OCTOBER 2026
+PHASE 1 / LIVE QA STATUS — UPDATED 20 OCTOBER 2026
 PASS — User manually checked the live homepage, search, category filter, sorting, View details, buying guide and mobile layout.
 PASS — GitHub Actions site checks: internal links/catalogue data, product image and retailer URL coverage, inline JavaScript syntax, SEO metadata and sitemap coverage. Latest run reports 92 product entries, 82 exact-name Amazon search URLs, 10 direct product URLs, and 16 canonical pages included in sitemap.
+PASS — Catalogue now supports a temporary side-by-side comparison of 2–3 selected products using the available listing data; the comparison is not a live price feed and does not guarantee exact variant equivalence.
 PASS — GitHub Pages deployment succeeded for the latest repository commit checked on 19 October 2026, and the automated site-check workflow passed. After any future commit, verify its own deployment and site-check run before declaring it live.
 PASS — Static source audit checked all 16 HTML files and found no missing local page references.
 PASS — Two Diwali shopping guides are available in English and Hinglish, linked to each other and included in the 16-page canonical sitemap.
