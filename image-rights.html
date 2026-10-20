@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#081321">
+<title>Image Rights Review | Nivoget</title>
+<style>
+:root{color-scheme:light;--ink:#102238;--muted:#5b6c7e;--line:#dce5ed;--paper:#f3f7fa;--blue:#153652;--cyan:#0e7490;--amber:#fff4d8}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#075985}header{background:#081321;color:#fff;padding:15px max(16px,calc((100vw - 1100px)/2));display:flex;justify-content:space-between;gap:12px;align-items:center}header a{color:#bceeff;text-decoration:none}.wrap{max-width:1100px;margin:24px auto;padding:0 16px}h1{margin:0 0 8px;font-size:clamp(27px,4vw,38px)}h2{font-size:20px;margin:0 0 10px}.muted{color:var(--muted)}.notice{padding:14px 16px;background:var(--amber);border:1px solid #e9d49a;border-radius:12px;margin:18px 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.stat,.panel,.item{background:white;border:1px solid var(--line);border-radius:13px;padding:14px}.stat strong{display:block;font-size:24px}.tools{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.tools input,.tools select,button,input,select,textarea{font:inherit}.tools input,.tools select{border:1px solid #b9c8d5;border-radius:9px;padding:10px;background:white;color:var(--ink)}.tools input{flex:1;min-width:200px}button,.button{border:1px solid var(--blue);background:var(--blue);color:white;border-radius:9px;padding:10px 13px;font-weight:750;cursor:pointer;text-decoration:none;display:inline-block}button.secondary{background:white;color:var(--blue)}.items{display:grid;gap:12px}.item h3{font-size:17px;margin:0 0 5px}.urls{font-size:12px;overflow-wrap:anywhere}.itemgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.field{display:grid;gap:4px}.field label{font-size:12px;font-weight:750;color:#42566b}.field input,.field select,.field textarea{width:100%;border:1px solid #bdcbd7;border-radius:8px;padding:9px;background:white;color:var(--ink)}.field textarea{min-height:62px;resize:vertical}.wide{grid-column:1/-1}.approval{display:flex;gap:8px;align-items:flex-start;margin:12px 0;font-size:13px}.approval input{margin-top:4px}.status{display:inline-block;border-radius:6px;padding:3px 7px;background:#edf2f7;color:#3e5368;font-size:11px;font-weight:800}.status.approved{background:#d9fbe6;color:#14532d}.status.replace{background:#ffe7d6;color:#9a3412}.footer{font-size:12px;color:var(--muted);margin:26px 0}.empty{padding:30px;text-align:center;border:1px dashed #aebdca;border-radius:12px}.hidden{display:none!important}@media(max-width:650px){.stats{grid-template-columns:1fr 1fr}.itemgrid{grid-template-columns:1fr}.wide{grid-column:auto}header{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><strong>NIVOGET · Image Rights Review</strong><nav><a href="index.html">← Back to Nivoget</a></nav></header>
+<main class="wrap">
+<h1>Product image rights register</h1>
+<p class="muted">Internal review helper for the current product catalogue. This page is not indexed by search engines.</p>
+<div class="notice"><strong>Important:</strong> An image appearing on Amazon, a retailer site, a manufacturer site, or in Google Images does not automatically grant permission to republish it. The current catalogue images are <strong>not automatically cleared by this tool</strong>. Keep an item unapproved until its exact licence or written permission is recorded. This dashboard saves its review notes in this browser only; export a backup before changing devices.</div>
+<div class="stats"><div class="stat"><span class="muted">Catalogue items</span><strong id="total">—</strong></div><div class="stat"><span class="muted">Rights cleared</span><strong id="cleared">0</strong></div><div class="stat"><span class="muted">Needs review</span><strong id="pending">—</strong></div></div>
+<section class="panel">
+<h2>Review workflow</h2>
+<ol>
+<li>Prefer images you create yourself, or assets with an explicit licence permitting your intended use.</li>
+<li>For each reused image, record the original creator, exact source page, licence name and licence URL, plus the required credit.</li>
+<li>Check commercial-use and modification terms. Avoid “non-commercial” licences if the site may earn money; check “no derivatives” restrictions before edits. <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="noopener noreferrer">CC BY 4.0 terms ↗</a>.</li>
+<li>For product photos, use written permission or a licence that clearly covers commercial website use. A manufacturer’s website is a source, not proof that its images are free to reuse.</li>
+<li>If rights cannot be verified, set the action to “Replace with original visual” and create a Nivoget-made infographic using verified specifications. Do not copy Amazon’s product cards, layout, or promotional graphics.</li>
+</ol>
+<p class="muted">Wikimedia Commons also says each file has its own licence and attribution requirements; check the individual file page. <a href="https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia" target="_blank" rel="noopener noreferrer">Reuse guidance ↗</a>.</p>
+</section>
+<div class="tools"><input id="search" placeholder="Search product name, brand, or image host"><select id="filter"><option value="all">All review states</option><option value="pending">Needs review</option><option value="approved">Cleared with evidence</option><option value="replace">Replace with original visual</option></select><button id="export">Export review JSON</button><button id="csv" class="secondary">Export CSV</button><button id="backup" class="secondary">Download blank register</button></div>
+<div id="message" class="muted" aria-live="polite">Loading catalogue…</div>
+<div class="items" id="items"></div>
+<p class="footer">Review records are stored in this browser’s local storage under <code>nivogetImageRightsReview</code>. Export the JSON and keep it with your asset files and permissions. Marking an item “cleared” here does not itself grant rights or change the live product image.</p>
+</main>
+<script>
+(function(){
+const KEY="nivogetImageRightsReview";
+const $=id=>document.getElementById(id);
+let products=[];
+let records={};
+try{records=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){records={}}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function host(url){try{return new URL(url).hostname.replace(/^www\./,"")}catch(e){return "unknown source"}}
+function parseCatalogue(html){
+ const found=[];
+ for(const line of html.split("\n")){
+  if(!/(?:id|"id")\s*:\s*"/.test(line)||!/(?:name|"name")\s*:\s*"/.test(line)||!/(?:image|"image")\s*:\s*"/.test(line))continue;
+  const id=(line.match(/(?:id|"id")\s*:\s*"([^"]+)"/)||[])[1];
+  const name=(line.match(/(?:name|"name")\s*:\s*"([^"]+)"/)||[])[1];
+  const brand=(line.match(/(?:brand|"brand")\s*:\s*"([^"]+)"/)||[])[1]||"";
+  const main=(line.match(/(?:image|"image")\s*:\s*"(https?:[^"]+)"/)||[])[1];
+  if(!id||!name||!main)continue;
+  const urls=[main,...Array.from(line.matchAll(/url\s*:\s*"(https?:[^"]+)"/g),m=>m[1])].filter((u,i,a)=>a.indexOf(u)===i);
+  found.push({id,name,brand,urls});
+ }
+ return found;
+}
+function rec(p){return records[p.id]||{state:"pending",creator:"",sourcePage:"",license:"",licenseUrl:"",credit:"",evidence:"",notes:"",confirmed:false,action:"review"}}
+function save(){localStorage.setItem(KEY,JSON.stringify(records));render();}
+function status(r){return r.state==="approved"&&r.confirmed&&r.creator.trim()&&r.sourcePage.trim()&&r.license.trim()&&r.licenseUrl.trim()&&r.evidence.trim()?"approved":r.action==="replace"?"replace":"pending"}
+function render(){
+ const q=$("search").value.toLowerCase().trim(),f=$("filter").value;
+ const cleared=products.filter(p=>status(rec(p))==="approved").length;
+ $("total").textContent=products.length;$("cleared").textContent=cleared;$("pending").textContent=products.length-cleared;
+ const list=products.filter(p=>{const r=rec(p),st=status(r),text=(p.name+" "+p.brand+" "+p.urls.map(host).join(" ")).toLowerCase();return(!q||text.includes(q))&&(f==="all"||st===f)});
+ $("message").textContent=list.length+" of "+products.length+" catalogue items shown. Reviews are local to this browser.";
+ if(!list.length){$("items").innerHTML='<div class="empty">No products match this filter.</div>';return}
+ $("items").innerHTML=list.map(p=>{const r=rec(p),st=status(r);return '<article class="item" data-id="'+esc(p.id)+'"><div><span class="status '+(st==="approved"?"approved":st==="replace"?"replace":"")+'">'+(st==="approved"?"CLEARED WITH EVIDENCE":st==="replace"?"REPLACE VISUAL":"NEEDS REVIEW")+'</span></div><h3>'+esc(p.name)+'</h3><div class="muted">'+esc(p.brand)+' · ID: '+esc(p.id)+' · '+p.urls.length+' image URL(s)</div><div class="urls">'+p.urls.map((u,i)=>'<div><a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">Image '+(i+1)+' source ↗</a> · '+esc(host(u))+'</div>').join("")+'</div><div class="itemgrid"><div class="field"><label>Review action</label><select data-k="action"><option value="review" '+(r.action==="review"?"selected":"")+'>Review rights</option><option value="replace" '+(r.action==="replace"?"selected":"")+'>Replace with original visual</option><option value="keep" '+(r.action==="keep"?"selected":"")+'>Keep only after rights confirmed</option></select></div><div class="field"><label>Review state</label><select data-k="state"><option value="pending" '+(r.state==="pending"?"selected":"")+'>Needs review</option><option value="approved" '+(r.state==="approved"?"selected":"")+'>Cleared (requires evidence)</option></select></div><div class="field"><label>Creator / rights holder</label><input data-k="creator" value="'+esc(r.creator)+'" placeholder="Photographer or rights holder"></div><div class="field"><label>Exact source page URL</label><input data-k="sourcePage" value="'+esc(r.sourcePage)+'" placeholder="Page showing the asset and terms"></div><div class="field"><label>Licence name / permission</label><input data-k="license" value="'+esc(r.license)+'" placeholder="e.g. CC BY 4.0 or written permission"></div><div class="field"><label>Licence URL / permission reference</label><input data-k="licenseUrl" value="'+esc(r.licenseUrl)+'" placeholder="Exact licence terms"></div><div class="field"><label>Required credit line</label><input data-k="credit" value="'+esc(r.credit)+'" placeholder="Creator · source · licence"></div><div class="field"><label>Evidence reference</label><input data-k="evidence" value="'+esc(r.evidence)+'" placeholder="Permission email filename / record ID"></div><div class="field wide"><label>Notes / restrictions / edits allowed</label><textarea data-k="notes" placeholder="Commercial use? Cropping allowed? Attribution placement?">'+esc(r.notes)+'</textarea></div></div><label class="approval"><input type="checkbox" data-k="confirmed" '+(r.confirmed?"checked":"")+'> I checked the exact licence or written permission, commercial-use rights, modification restrictions, attribution requirements, and whether it covers this specific image.</label><button data-save="'+esc(p.id)+'">Save review</button> <button class="secondary" data-clear="'+esc(p.id)+'">Clear review fields</button></article>'}).join("");
+ $("items").querySelectorAll("[data-save]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.save,card=b.closest(".item"),old=rec(products.find(p=>p.id===id)),next={...old};card.querySelectorAll("[data-k]").forEach(el=>{next[el.dataset.k]=el.type==="checkbox"?el.checked:el.value});if(next.state==="approved"&&!(next.confirmed&&next.creator.trim()&&next.sourcePage.trim()&&next.license.trim()&&next.licenseUrl.trim()&&next.evidence.trim())){alert("To mark cleared, provide creator, exact source page, licence, licence URL, evidence reference and confirm the review. This is a checklist, not a legal guarantee.");return}records[id]=next;save()}));
+ $("items").querySelectorAll("[data-clear]").forEach(b=>b.addEventListener("click",()=>{delete records[b.dataset.clear];save()}));
+}
+function download(name,text,type){const blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),500)}
+$("search").addEventListener("input",render);$("filter").addEventListener("change",render);
+$("export").addEventListener("click",()=>download("nivoget-image-rights-review.json",JSON.stringify({exportedAt:new Date().toISOString(),note:"A review record is not a legal guarantee; retain original licence/permission evidence.",products:products.map(p=>({...p,review:rec(p),effectiveStatus:status(rec(p))}))},null,2),"application/json"));
+$("csv").addEventListener("click",()=>{const cols=["id","name","brand","imageURLs","state","action","creator","sourcePage","license","licenseUrl","credit","evidence","confirmed","notes"];const rows=[cols,...products.map(p=>{const r=rec(p);return[p.id,p.name,p.brand,p.urls.join(" | "),status(r),r.action,r.creator,r.sourcePage,r.license,r.licenseUrl,r.credit,r.evidence,r.confirmed,r.notes]})];download("nivoget-image-rights-review.csv",rows.map(row=>row.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\r\n"),"text/csv")});
+$("backup").addEventListener("click",()=>download("nivoget-image-rights-register-blank.json",JSON.stringify({createdAt:new Date().toISOString(),items:products.map(p=>({...p,review:{state:"pending",action:"review",creator:"",sourcePage:"",license:"",licenseUrl:"",credit:"",evidence:"",confirmed:false,notes:""}}))},null,2),"application/json"));
+fetch("index.html",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("Could not read catalogue page");return r.text()}).then(html=>{products=parseCatalogue(html);if(!products.length)throw new Error("Could not identify catalogue entries. Check the product data format.");render()}).catch(e=>{$("message").textContent="Catalogue could not be loaded: "+e.message+". Open this page from the live Nivoget website.";});
+})();
+</script>
+</body>
+</html>
