@@ -256,7 +256,7 @@ jobs:
           errors = []
           expected_urls = set()
 
-          excluded = {"404.html", "index-1.html", "google5ec20ca5ae33c565.html", "cart.html"}
+          excluded = {"404.html", "index-1.html", "google5ec20ca5ae33c565.html", "cart.html", "image-rights.html"}
           for path in sorted(root.glob("*.html")):
               if path.name in excluded:
                   continue
