@@ -141,7 +141,7 @@ const products=[
 const grid=document.getElementById("grid"),search=document.getElementById("search"),clearSearch=document.getElementById("clearSearch"),category=document.getElementById("category"),sort=document.getElementById("sort"),count=document.getElementById("count"),dialog=document.getElementById("dialog"),modalBody=document.getElementById("modalBody");
 let statusFilter="All";
 function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function art(p){if(!p.image)return '<div class="illustration"><span class="emoji">'+safe(p.icon)+'</span><strong>'+safe(p.name)+'</strong><small>Illustration · Check official product photos before buying</small></div>';return '<img src="'+safe(p.image)+'" alt="'+safe(p.name)+' product image" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.classList.add(\'image-failed\')">\';}
+function art(p){if(!p.image)return '<div class="illustration"><span class="emoji">'+safe(p.icon)+'</span><strong>'+safe(p.name)+'</strong><small>Illustration · Check official product photos before buying</small></div>';return '<img src="'+safe(p.image)+'" alt="'+safe(p.name)+' product image" loading="lazy" onerror="this.onerror=null;this.style.display=\'none\';this.parentElement.classList.add(\'image-failed\')">';}
 function render(){
  const q=search.value.trim().toLowerCase();
  const tokens=q.split(/\s+/).filter(Boolean);
