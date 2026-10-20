@@ -31,7 +31,7 @@ PAGES
 CATALOGUE STATUS
 - Homepage catalogue contains 92 product cards across 29 categories.
 - Current source audit found image URLs on all 92 product cards; no cards remain without an image URL. The 47 previously illustrative previews have been replaced with product-specific or clearly identified model/range images. External image loading, exact model/variant match, and source permissions/terms have not all been live-verified and must be checked before launch.
-- Latest source audit found 10 direct Amazon product URLs and 82 Amazon search-result URLs across the 92 cards. The 10 direct links currently point to Google Pixel 10, OnePlus 13R, Logitech K380s, Echo Dot 5th Gen, Samsung UE86AH TV, Logitech G502 HERO, Canon EOS R50, Brother DCP-T535DW, TP-Link Deco M4 2-pack and PS5 Slim. All 65 Amazon search links use the exact full product-card name as the search query; automated checks validate this match. Search links are search results, not verified exact listings. This is a source-code audit, not a live check that a listing is available or matches the exact model/variant; open each direct listing before launch.
+- Latest source audit found 10 direct Amazon product URLs and 82 Amazon search-result URLs across the 92 cards. The 10 direct links currently point to Google Pixel 10, OnePlus 13R, Logitech K380s, Echo Dot 5th Gen, Samsung UE86AH TV, Logitech G502 HERO, Canon EOS R50, Brother DCP-T535DW, TP-Link Deco M4 2-pack and PS5 Slim. All 82 Amazon search links use the exact full product-card name as the search query; automated checks validate this match. Search links are search results, not verified exact listings. This is a source-code audit, not a live check that a listing is available or matches the exact model/variant; open each direct listing before launch.
 - Some entries represent product families rather than a verified exact model.
 - Some cards use third-party retailer images; verify source terms/permissions and exact model/variant before launch.
 - Some retailer buttons open model-search results rather than a verified exact product listing.
@@ -45,11 +45,11 @@ PASS — GitHub Actions site checks: internal links/catalogue data, product imag
 PASS — GitHub Pages deployment succeeded for the latest repository commit checked on 19 October 2026, and the automated site-check workflow passed. After any future commit, verify its own deployment and site-check run before declaring it live.
 PASS — Static source audit checked all 16 HTML files and found no missing local page references.
 PASS — Two Diwali shopping guides are available in English and Hinglish, linked to each other and included in the 16-page canonical sitemap.
-PASS — Catalogue has 92 product cards across 29 categories; each has an HTTPS image URL, manufacturer URL and retailer URL. Current automated audit reports 10 direct Amazon product URLs and 65 Amazon search-result URLs; the search terms match the corresponding product-card names.
+PASS — Catalogue has 92 product cards across 29 categories; each has an HTTPS image URL, manufacturer URL and retailer URL. Current automated audit reports 10 direct Amazon product URLs and 82 Amazon search-result URLs; the search terms match the corresponding product-card names.
 
 REMAINING LAUNCH TASKS — EXTERNAL / OWNER-ONLY VERIFICATION
-1. Verify the 75 image sources for exact model/variant match and source terms/permissions. User reports images look okay on the live page; visual loading does not establish reuse rights.
-2. Re-open the 10 direct Amazon product URLs to confirm current availability and exact variants. The other 65 are clearly labelled search-result links, not verified exact product listings.
+1. Verify the 92 image sources for exact model/variant match and source terms/permissions. User reports images look okay on the live page; visual loading does not establish reuse rights.
+2. Re-open the 10 direct Amazon product URLs to confirm current availability and exact variants. The other 82 are clearly labelled search-result links, not verified exact product listings.
 3. Google Search Console verification file exists in the repository. User reports ownership verification is complete. Submit the sitemap in Search Console if it has not already been submitted: https://mohitpanchwan107-ux.github.io/techsaathi/sitemap.xml. Check the Sitemaps and Pages/Indexing reports for processing and indexing status; verification alone does not mean all pages are indexed.
 4. Confirm the teacher's rubric/project instructions. A working website does not automatically satisfy every classroom requirement.
 5. Recheck the latest deployment after any future change. GitHub Actions workflow checks are source-code checks and do not prove every third-party link or image will stay live.
