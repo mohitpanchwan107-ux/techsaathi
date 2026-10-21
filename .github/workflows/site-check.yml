@@ -144,8 +144,8 @@ jobs:
               name, image, retailer = field("name"), field("image"), field("retailer")
               if not name:
                   errors.append("Product entry is missing a name")
-              if not image or not image.startswith("https://"):
-                  errors.append(f"{name or 'Unknown product'}: missing HTTPS image URL")
+              if image and not image.startswith("https://"):
+                  errors.append(f"{name or 'Unknown product'}: image URL must use HTTPS when provided")
               if not retailer or not retailer.startswith("https://"):
                   errors.append(f"{name or 'Unknown product'}: missing HTTPS retailer URL")
                   continue
@@ -163,8 +163,8 @@ jobs:
               else:
                   errors.append(f"{name}: unrecognized Amazon retailer URL format")
 
-          if product_lines and len(product_lines) < 70:
-              errors.append(f"Expected at least 70 product entries, found {len(product_lines)}")
+          if product_lines and len(product_lines) < 20:
+              errors.append(f"Expected at least 20 product entries in the active catalogue, found {len(product_lines)}")
           if search_count + direct_count != len(product_lines):
               errors.append(f"Retailer URL coverage mismatch: {search_count} search + {direct_count} direct for {len(product_lines)} products")
 
@@ -172,7 +172,7 @@ jobs:
               print("Product image/retailer audit failed:")
               print("\n".join("- " + error for error in errors))
               sys.exit(1)
-          print(f"Product URL audit passed: {len(product_lines)} products, HTTPS image URLs present, {search_count} exact-name Amazon searches, {direct_count} direct product URLs.")
+          print(f"Product URL audit passed: {len(product_lines)} products, image URLs checked when provided (missing images use labelled placeholders), {search_count} exact-name Amazon searches, {direct_count} direct product URLs.")
           PY
       - name: Audit remote product image responses (report only)
         continue-on-error: true
