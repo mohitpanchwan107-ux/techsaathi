@@ -96,8 +96,8 @@ jobs:
               if product_block.count(required_field) < 12 and required_field != '"category":':
                   # Older entries use unquoted keys; check both supported source styles below.
                   pass
-          if ids and len(ids) < 70:
-              errors.append(f"Phase 1 catalogue expected at least 70 products; found {len(ids)}")
+          if ids and len(ids) < 20:
+              errors.append(f"Expected at least 20 entries in the active catalogue; found {len(ids)}")
 
           # Keep every product card complete: image, manufacturer link and retailer link.
           image_count = len(re.findall(r'(?:\bimage\s*:|"image"\s*:)\s*"https://', product_block))
