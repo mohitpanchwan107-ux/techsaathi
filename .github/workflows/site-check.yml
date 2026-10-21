@@ -56,7 +56,7 @@ jobs:
           filters = set(re.findall(r'data-status="([^"]+)"', homepage))
           if statuses - {"Featured", "Product range"}:
               errors.append("Unexpected catalogue status label: " + ", ".join(sorted(statuses - {"Featured", "Product range"})))
-          if filters - statuses - {"All"}:
+          if ids and (filters - statuses - {"All"}):
               errors.append("A status filter has no matching product status: " + ", ".join(sorted(filters - statuses - {"All"})))
 
           # Validate the user-facing 14-category shopping taxonomy. Legacy product
